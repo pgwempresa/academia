@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Resgatar Peça - Elena Store</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="pages.css">
+
+    <!-- TikTok Pixel Code Start -->
+    <script>
+    !function (w, d, t) {
+      w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(
+      var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script")
+      ;n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
+
+      ttq.load('D470E4RC77U2P8MCJJR0');
+      ttq.page();
+    }(window, document, 'ttq');
+    </script>
+    <!-- TikTok Pixel Code End -->
+
+    <style>
+        /* Componentes Exclusivos da Nova Página de Produto Premium */
+        .size-btn { border: 1px solid #dcdcdc; width: 50px; height: 50px; display: flex; justify-content: center; align-items: center; border-radius: 6px; font-weight: 600; font-size: 0.95rem; cursor: pointer; transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1); color: #555; background: #fff;}
+        .size-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.05); border-color: #999; }
+        .size-btn:active { transform: scale(0.95); }
+        .size-btn.active { border-color: var(--text-dark); background: var(--text-dark); color: #fff; transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+
+        .accordion { border-bottom: 1px solid #eee; padding: 20px 0; }
+        .accordion summary { font-weight: 600; font-size: 0.95rem; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; outline: none;}
+        .accordion summary::-webkit-details-marker { display: none; }
+        .accordion summary::after { content: '+'; font-size: 1.5rem; color: #777; font-weight: 300; line-height: 1; transition: 0.2s;}
+        .accordion[open] summary::after { content: '−'; transform: rotate(180deg); color: var(--text-dark);}
+        .accordion p { margin-top: 15px; font-size: 0.9rem; color: #666; line-height: 1.6; }
+
+        /* Barra flutuante nativa (Aparece ao scrollar muito a página) */
+        .sticky-bottom-bar { position: fixed; bottom: 0; left: 0; width: 100%; background: rgba(255,255,255,0.95); backdrop-filter: blur(8px); padding: 15px; border-top: 1px solid #efefef; z-index: 100; box-shadow: 0 -4px 15px rgba(0,0,0,0.05); display: flex; justify-content: center; opacity: 0; visibility: hidden; transition: 0.3s ease-in-out; transform: translateY(20px);}
+        .sticky-bottom-bar.visible { opacity: 1; visibility: visible; transform: translateY(0);}
+        .sticky-bottom-bar .btn-checkout { margin: 0; max-width: 500px; padding: 18px; font-size: 0.95rem; width: 100%;}
+        
+        .carousel-wrapper { position: relative; margin-left: -20px; margin-right: -20px; margin-bottom: 20px; overflow: hidden; }
+        .carousel-container { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+        .carousel-container::-webkit-scrollbar { display: none; }
+        .carousel-slide { flex: 0 0 100%; scroll-snap-align: center; position: relative; display: flex; justify-content: center;}
+        .carousel-slide img { width: 100%; max-height: 80vh; display: block; object-fit: cover; }
+        .carousel-dots { display: flex; justify-content: center; gap: 8px; margin-top: 15px; margin-bottom: 25px; }
+        .dot { width: 8px; height: 8px; border-radius: 50%; background: #ddd; cursor: pointer; transition: 0.3s; }
+        .dot.active { background: var(--text-dark); transform: scale(1.2); }
+    </style>
+</head>
+<body>
+    <!-- Menu Lateral -->
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+    <div class="sidebar" id="sidebarMenu">
+        <div class="sidebar-header">
+            <span class="sidebar-title">Menu</span>
+            <button class="close-sidebar" onclick="closeSidebar()">✕</button>
+        </div>
+        <ul class="sidebar-nav">
+            <li><a href="javascript:void(0)">✨ Novidades</a></li>
+            <li><a href="javascript:void(0)">💪 Conjuntos Fitness</a></li>
+            <li><a href="javascript:void(0)">🩳 Shorts</a></li>
+            <li><a href="javascript:void(0)">🔥 Promoções</a></li>
+            <li><a href="javascript:void(0)">🏋️ Acessórios</a></li>
+            <hr>
+            <li><a href="javascript:void(0)">👤 Minha Conta</a></li>
+            <li><a href="javascript:void(0)">📦 Meus Pedidos</a></li>
+            <li><a href="javascript:void(0)">📞 Atendimento</a></li>
+        </ul>
+    </div>
+
+    <header>
+        <div class="top-nav" style="display:flex; justify-content:center; align-items:center; position: relative;">
+            <button onclick="openSidebar()" style="position: absolute; left: 15px; background:none; border:none; font-size:1.6rem; cursor:pointer; color:var(--text-dark); padding: 5px;">☰</button>
+            <img src="images/logo.png" alt="Elena Store" class="nav-logo" onerror="this.style.display='none'" style="max-height: 58px;">
+        </div>
+        <div class="warning-banner" style="background:#000; color:#fff;">🎁 Você selecionou o seu brinde exclusivo da nossa coleção. Finalize o resgate agora.</div>
+    </header>
+
+    <main class="product-page-container" id="productDetail" style="padding-bottom: 60px;">
+        <!-- Injetado por Javascript dinamicamente -->
+    </main>
+
+    <!-- Barra Rápida de Compra Fixa Mobile -->
+    <div class="sticky-bottom-bar" id="stickyBar">
+        <button class="btn-checkout" onclick="goToCheckout()">
+            RESGATAR MINHA PEÇA →
+        </button>
+    </div>
+
+    <!-- Rodapé -->
+    <footer>
+        <img src="images/logo.png" alt="Elena Store" class="footer-logo" onerror="this.style.display='none'">
+        <p class="footer-desc">Moda fitness feminina com performance e estilo. Peças exclusivas para mulheres que valorizam qualidade nos treinos.</p>
+        
+        <div class="footer-section">
+            <h3>CONTATO</h3>
+            <p>contato@elenastore.com.br</p>
+            <p>(11) 99876-5432</p>
+            <p>WhatsApp: (11) 99876-5432</p>
+            <p>Seg a Sex: 9h às 18h</p>
+        </div>
+        
+        <div class="footer-section">
+            <h3>POLÍTICAS</h3>
+            <a href="#">Política de Privacidade</a>
+            <a href="#">Termos de Uso</a>
+            <a href="#">Política de Trocas</a>
+            <a href="#">Política de Envio</a>
+        </div>
+    </footer>
+
+    <script src="produtos.js"></script>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const id = parseInt(urlParams.get('id')) || 1;
+        const produto = typeof produtos !== 'undefined' ? (produtos.find(p => p.id === id) || produtos[0]) : { id: 1, nome: "Produto Local", imagem: "images/giftbox.png", precoOriginal: "0,00" };
+        
+        // Link Centralizado
+        function goToCheckout() {
+            let size = 'M';
+            const sizeLabel = document.getElementById('sizeLabel');
+            if(sizeLabel) size = sizeLabel.innerText;
+            
+            let colorParam = '';
+            const colorLabel = document.getElementById('selectedColorLabel');
+            if(colorLabel) colorParam = `&color=${encodeURIComponent(colorLabel.innerText)}`;
+            
+            let imgSrcParam = '';
+            const imgEl = document.getElementById('mainProdImage');
+            if(imgEl) imgSrcParam = `&img=${encodeURIComponent(imgEl.getAttribute('src'))}`;
+            
+            window.location.href = `checkout.html?id=${produto.id}&size=${size}${colorParam}${imgSrcParam}`;
+        }
+
+        // TikTok Event: AddToCart (disparado ao clicar em Resgatar)
+        const originalGoToCheckout = goToCheckout;
+        goToCheckout = function() {
+            if(typeof ttq !== 'undefined') {
+                ttq.track('AddToCart', {
+                    content_type: 'product',
+                    content_id: String(produto.id),
+                    content_name: produto.nome,
+                    price: 0,
+                    value: 0,
+                    currency: 'BRL',
+                    quantity: 1
+                });
+            }
+            originalGoToCheckout();
+        };
+
+        const detailContainer = document.getElementById('productDetail');
+
+        const extraImages = (produto.variantes && produto.variantes.length > 0) ? produto.variantes.map(v => v.img) : [];
+        const galleryImages = [produto.imagem, ...extraImages].filter((value, index, self) => self.indexOf(value) === index);
+
+        const carouselHTML = `
+            <div class="carousel-wrapper">
+                <div class="carousel-container" id="carouselList" onscroll="updateDots()">
+                    ${galleryImages.map((imgSrc, i) => `
+                        <div class="carousel-slide">
+                            <img src="${imgSrc}" id="${i===0 ? 'mainProdImage' : ''}" alt="${produto.nome}">
+                        </div>
+                    `).join('')}
+                </div>
+                ${produto.badge ? `<div style="position:absolute; top: 15px; left: 15px; background:rgba(255,255,255,0.9); z-index: 2; padding: 4px 10px; font-size: 0.75rem; font-weight: 700; letter-spacing: 1px; color: var(--text-dark); border-radius: 4px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">${produto.badge}</div>` : ''}
+            </div>
+            ${galleryImages.length > 1 ? `
+            <div class="carousel-dots" id="carouselDots">
+                ${galleryImages.map((_, i) => `
+                    <div class="dot ${i === 0 ? 'active' : ''}" onclick="scrollToSlide(${i})"></div>
+                `).join('')}
+            </div>
+            ` : ''}
+        `;
+
+        detailContainer.innerHTML = `
+            ${carouselHTML}
+            
+            <h1 class="product-detail-title">${produto.nome}</h1>
+            
+            <div class="stars" style="font-size: 1.05rem; margin-bottom: 15px;">
+                <span style="color:#ffb800">★★★★★</span> 
+                <span style="color:var(--text-dark); font-weight:600; margin-left:5px;">4.9 (428 avaliações)</span>
+            </div>
+
+            <div class="price-line" style="font-size: 1.6rem; margin-bottom: 30px; display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap;">
+                <span class="price-free" style="color: #00c16e; font-weight: 800; font-size: 1.8rem; line-height: 1;">TOTALMENTE GRÁTIS</span>
+                <span class="price-old" style="font-size: 1.15rem; color: var(--warning-red); font-weight: 600;">R$ ${produto.precoOriginal}</span>
+            </div>
+
+            ${produto.variantes && produto.variantes.length > 0 ? `
+                <div class="product-variants" style="margin-bottom: 30px;">
+                    <p style="font-weight: 600; font-size: 0.85rem; margin-bottom: 12px; color: var(--text-dark); text-transform: uppercase; letter-spacing: 1px;">Selecionado: <span id="selectedColorLabel" style="color: #666; font-weight: 500; text-transform: none; margin-left: 5px;">${produto.variantes[0].cor}</span></p>
+                    <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+                        ${galleryImages.map((imgSrc, idx) => {
+                            const vari = produto.variantes.find(v => v.img === imgSrc) || {cor: 'Detalhe'};
+                            return `
+                            <div class="variant-btn" 
+                                 onclick="selectVariant('${imgSrc}', '${vari.cor}', ${idx}, this)" 
+                                 style="width: 55px; height: 55px; border-radius: 8px; padding: 2px; border: 2px solid ${idx===0? 'var(--text-dark)' : 'transparent'}; cursor: pointer; transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);">
+                                <div style="width: 100%; height: 100%; border-radius: 5px; background-image: url('${imgSrc}'); background-size: cover; background-position: top; border: 1px solid #eee;"></div>
+                            </div>
+                            `;
+                        }).join('')}
+                    </div>
+                </div>
+            ` : `<span id="selectedColorLabel" style="display:none;"></span>`}
+
+            <div class="size-selector" style="margin-bottom: 35px;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 15px; align-items: center;">
+                    <p style="font-weight: 600; font-size: 0.85rem; color: var(--text-dark); text-transform: uppercase; letter-spacing: 1px;">Tamanho: <span id="sizeLabel" style="color: #666; font-weight: 500;">M</span></p>
+                    <a href="javascript:void(0)" style="font-size: 0.75rem; color: #555; text-decoration: underline;" onclick="alert('★ GUIA DE MEDIDAS FITNESS ★\\nP (36-38): Busto 84-88cm | Cintura 64-68cm | Quadril 90-94cm\\nM (40-42): Busto 90-94cm | Cintura 70-74cm | Quadril 96-100cm\\nG (44-46): Busto 96-100cm | Cintura 76-80cm | Quadril 102-106cm\\nGG (48-50): Busto 102-106cm | Cintura 82-86cm | Quadril 108-112cm')">Guia de medidas</a>
+                </div>
+                <!-- Grade de Botões de Tamanho -->
+                <div style="display: flex; gap: 12px;">
+                    <div class="size-btn" onclick="selectSize(this, 'P')">P</div>
+                    <div class="size-btn active" onclick="selectSize(this, 'M')">M</div>
+                    <div class="size-btn" onclick="selectSize(this, 'G')">G</div>
+                    <div class="size-btn" onclick="selectSize(this, 'GG')">GG</div>
+                </div>
+            </div>
+
+            <button class="btn-checkout" onclick="goToCheckout()" style="margin-bottom: 25px;" id="mainCheckoutBtn">
+                RESGATAR MINHA PEÇA →
+            </button>
+            
+            <!-- Trust Badges Visuais -->
+            <div class="trust-badges" style="display: flex; justify-content: space-between; background: #fafafa; padding: 20px 15px; border-radius: 8px; border: 1px solid #eaeaea; margin-bottom: 35px;">
+                <div style="text-align: center; font-size: 0.75rem; color: #444; font-weight: 500;"><span style="font-size:1.6rem; display:block; margin-bottom: 8px;">📦</span> Troca Grátis</div>
+                <div style="text-align: center; font-size: 0.75rem; color: #444; font-weight: 500;"><span style="font-size:1.6rem; display:block; margin-bottom: 8px;">🔒</span> Compra Segura</div>
+                <div style="text-align: center; font-size: 0.75rem; color: #444; font-weight: 500;"><span style="font-size:1.6rem; display:block; margin-bottom: 8px;">💪</span> Tecido Fitness</div>
+            </div>
+
+            <!-- Descrição Rica & Características -->
+            <div class="product-description-block" style="margin-bottom: 40px; background: #fff; padding: 25px 20px; border-radius: 8px; border: 1px solid #eee;">
+                <h3 style="font-size: 1.2rem; font-family: 'Playfair Display', serif; margin-bottom: 15px; color: var(--text-dark);">Sobre a Peça</h3>
+                <p style="color:#555; font-size:0.95rem; line-height:1.7; margin-bottom: 25px; letter-spacing: 0.2px;">
+                    ${produto.descricao || 'Peça com estilo sofisticado, modelagem impecável e conforto para o seu dia a dia. Aproveite nosso brinde promocional! Oportunidade limitada.'}
+                </p>
+                <h4 style="font-size: 0.95rem; margin-bottom: 15px; color: var(--text-dark); text-transform: uppercase; letter-spacing: 1px; font-weight: 700;">Diferenciais:</h4>
+                <ul style="list-style: none; padding: 0;">
+                    ${produto.caracteristicas ? produto.caracteristicas.map(c => `
+                        <li style="font-size: 0.9rem; color: #555; margin-bottom: 12px; display: flex; align-items: flex-start; gap: 10px;">
+                            <span style="color: #00c16e; font-size: 1rem; line-height: 1; font-weight: bold;">✓</span> <span style="flex:1; line-height: 1.4;">${c}</span>
+                        </li>
+                    `).join('') : `
+                        <li style="font-size: 0.9rem; color: #555; margin-bottom: 10px; display: flex; align-items: flex-start; gap: 8px;">
+                            <span style="color: #00c16e; font-size: 1rem; line-height: 1;">✓</span> Tecido Macio de Alfaiataria Premium
+                        </li>
+                    `}
+                </ul>
+            </div>
+
+            <!-- Avaliações In-Page Otimizadas para Conversão -->
+            <div class="product-reviews-block" style="margin-bottom: 40px;">
+                <h3 style="font-size: 1.2rem; font-family: 'Playfair Display', serif; margin-bottom: 25px; color: var(--text-dark); display: flex; justify-content: space-between; align-items: center;">Avaliações (428) <span style="font-size: 0.9rem; font-family: 'Montserrat', sans-serif; color: #ffb800; letter-spacing: 2px;">★★★★★ <span style="color:#333;">4.9</span></span></h3>
+                
+                <div style="background: #fafafa; padding: 22px; border-radius: 8px; margin-bottom: 15px; border: 1px solid #f1f1f1;">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px;">
+                        <p style="font-weight: 700; font-size: 0.9rem; color: #222;">Marta Almeida <span style="color: #00c16e; font-size: 0.75rem; margin-left: 8px; font-weight: 500;">✔️ Verificada</span></p>
+                        <div style="color: #ffb800; font-size: 0.85rem; letter-spacing: 1px;">★★★★★</div>
+                    </div>
+                    <p style="font-size: 0.9rem; color: #555; line-height: 1.6; font-style: italic;">"O tecido é incrível! Treino pesado de perna e a legging não fica transparente de jeito nenhum. O top segura super bem e não machuca. Melhor roupa fitness que já comprei!"</p>
+                </div>
+                
+                <div style="background: #fafafa; padding: 22px; border-radius: 8px; border: 1px solid #f1f1f1;">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px;">
+                        <p style="font-weight: 700; font-size: 0.9rem; color: #222;">Beatriz Silva Franco <span style="color: #00c16e; font-size: 0.75rem; margin-left: 8px; font-weight: 500;">✔️ Verificada</span></p>
+                        <div style="color: #ffb800; font-size: 0.85rem; letter-spacing: 1px;">★★★★★</div>
+                    </div>
+                    <p style="font-size: 0.9rem; color: #555; line-height: 1.6; font-style: italic;">"Qualidade absurda! O tecido seca super rápido, não fica com cheiro depois do treino e a compressão é perfeita. Já encomendei de mais 3 cores, amei demais!"</p>
+                </div>
+            </div>
+
+            <!-- ACORDEÕES COM INFORMAÇÕES DE VALOR -->
+            <div class="accordion-group" style="margin-bottom: 20px;">
+                <details class="accordion">
+                    <summary>Composição e Cuidados</summary>
+                    <p>Produzido com tecido Dry-Fit de alta performance (88% Poliamida + 12% Elastano). Toque macio, leve e com tecnologia de absorção de suor.<br><br><b>Lavagem:</b> Lavar à máquina em ciclo delicado com água fria. Não usar alvejante. Secar à sombra para maior durabilidade.</p>
+                </details>
+                <details class="accordion">
+                    <summary>Disponibilidade e Entrega</summary>
+                    <p>A Peça promocional que você selecionou está <b>disponível em nosso estoque logístico</b> para envio imediato.<br><br>O prazo de entrega exato varia de 2 a 15 dias e será calculado no carrinho baseando-se no frete escolhido. Enviamos para todo o Brasil de forma rastreada via Correios e Transportadoras expressas.</p>
+                </details>
+                <details class="accordion">
+                    <summary>Trocas e Devoluções</summary>
+                    <p>Queremos que você fique apaixonada pela sua peça. Por isso, oferecemos a <b>primeira troca totalmente grátis!</b> Caso o tamanho não fique perfeito ou você mude de ideia, garantimos a devolução ou troca do pedido no prazo de até 7 dias corridos após o recebimento em sua casa.</p>
+                </details>
+            </div>
+        `;
+
+        window.selectVariant = function(imgSrc, colorName, index, element) {
+            document.getElementById('selectedColorLabel').innerText = colorName;
+            document.querySelectorAll('.variant-btn').forEach(btn => btn.style.borderColor = 'transparent');
+            element.style.borderColor = 'var(--text-dark)';
+            window.scrollToSlide(index);
+        };
+
+        // Lógica de Paginação do Carrossel e Tamanhos
+        window.updateDots = function() {
+            const list = document.getElementById('carouselList');
+            const index = Math.round(list.scrollLeft / list.clientWidth);
+            
+            const dots = document.querySelectorAll('.dot');
+            dots.forEach((d, i) => {
+                if(i === index) d.classList.add('active');
+                else d.classList.remove('active');
+            });
+
+            const btns = document.querySelectorAll('.variant-btn');
+            if(btns.length > index) {
+                btns.forEach(btn => btn.style.borderColor = 'transparent');
+                btns[index].style.borderColor = 'var(--text-dark)';
+                // Atualiza também o nome da opção ao arrastar pro lado (sincronia mágica)
+                if(produto.variantes) {
+                    const vari = produto.variantes.find(v => v.img === galleryImages[index]);
+                    if(vari) document.getElementById('selectedColorLabel').innerText = vari.cor;
+                }
+            }
+        };
+
+        window.scrollToSlide = function(index) {
+            const list = document.getElementById('carouselList');
+            list.scrollTo({ left: list.clientWidth * index, behavior: 'smooth' });
+        };
+
+        window.selectSize = function(element, size) {
+            document.querySelectorAll('.size-btn').forEach(btn => btn.classList.remove('active'));
+            element.classList.add('active');
+            document.getElementById('sizeLabel').innerText = size;
+        };
+
+        // Lógica de Visibilidade do Botão Flutuante Inferior (Aumenta Conversão)
+        window.addEventListener('scroll', () => {
+            const bar = document.getElementById('stickyBar');
+            const mainBtn = document.getElementById('mainCheckoutBtn');
+            if(!mainBtn) return;
+            const btnPos = mainBtn.getBoundingClientRect().top;
+            
+            // Aparecer a barra fixa se o botão de cima original sair da tela
+            if(btnPos < -50) {
+                bar.classList.add('visible');
+            } else {
+                bar.classList.remove('visible');
+            }
+        });
+
+        // Lógica do Menu Lateral
+        function openSidebar() {
+            document.getElementById('sidebarMenu').classList.add('active');
+            document.getElementById('sidebarOverlay').classList.add('active');
+        }
+        function closeSidebar() {
+            document.getElementById('sidebarMenu').classList.remove('active');
+            document.getElementById('sidebarOverlay').classList.remove('active');
+        }
+
+        // TikTok Event: ViewContent (Produto Individual)
+        if(typeof ttq !== 'undefined') {
+            ttq.track('ViewContent', {
+                content_type: 'product',
+                content_id: String(produto.id),
+                content_name: produto.nome,
+                price: 0,
+                value: 0,
+                currency: 'BRL'
+            });
+        }
+    </script>
+</body>
+</html>

