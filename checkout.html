@@ -105,12 +105,12 @@
 
             <!-- Frete Options -->
             <label class="shipping-option" id="lblFrete1">
-                <input type="radio" name="freteOpt" value="1.99" class="shipping-radio">
+                <input type="radio" name="freteOpt" value="16.44" class="shipping-radio">
                 <div class="shipping-info">
                     <div class="shipping-title">Entrega Normal</div>
                     <div class="shipping-desc">Receba em 10 a 15 dias úteis</div>
                 </div>
-                <div class="shipping-price">R$ 1,99</div>
+                <div class="shipping-price">R$ 16,44</div>
             </label>
 
             <label class="shipping-option selected" id="lblFrete2">
@@ -125,7 +125,7 @@
             <label class="shipping-option" id="lblFrete3">
                 <input type="radio" name="freteOpt" value="27.93" class="shipping-radio">
                 <div class="shipping-info">
-                    <div class="shipping-title">E-Sedex Prio</div>
+                    <div class="shipping-title">SEDEX</div>
                     <div class="shipping-desc">Receba em 2 a 4 dias úteis</div>
                 </div>
                 <div class="shipping-price">R$ 27,93</div>
@@ -273,6 +273,77 @@
                 quantity: 1
             });
         }
+
+        // --- MÁSCARAS E PREENCHIMENTO AUTOMÁTICO VIA-CEP ---
+        const cepInput = document.getElementById('chkCep');
+        const ruaInput = document.getElementById('chkRua');
+        const bairroInput = document.getElementById('chkBairro');
+        const cidadeInput = document.getElementById('chkCidade');
+        const estadoInput = document.getElementById('chkEstado');
+        const numeroInput = document.getElementById('chkNumero');
+        const cpfInput = document.getElementById('chkCpf');
+        const telefoneInput = document.getElementById('chkTelefone');
+        const nomeInput = document.getElementById('chkNome');
+
+        // Permitir apenas letras no Nome
+        nomeInput.addEventListener('input', function(e) {
+            e.target.value = e.target.value.replace(/[^a-zA-ZáàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ\s]/g, '');
+        });
+
+        // Máscara CEP e ViaCEP
+        cepInput.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, ''); // Apenas números
+            if (value.length > 5) {
+                value = value.replace(/^(\d{5})(\d)/, '$1-$2');
+            }
+            e.target.value = value.substring(0, 9);
+            
+            // Auto-completar ViaCEP
+            const cepLimpo = value.replace(/\D/g, '');
+            if (cepLimpo.length === 8) {
+                fetch(`https://viacep.com.br/ws/${cepLimpo}/json/`)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (!data.erro) {
+                            ruaInput.value = data.logradouro;
+                            bairroInput.value = data.bairro;
+                            cidadeInput.value = data.localidade;
+                            estadoInput.value = data.uf;
+                            numeroInput.focus(); // Direciona para o número após preencher
+                        }
+                    })
+                    .catch(error => console.error("Erro ao buscar CEP:", error));
+            }
+        });
+
+        // Máscara CPF
+        cpfInput.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, ''); // Apenas números
+            if (value.length > 11) value = value.substring(0, 11);
+            if (value.length > 9) {
+                value = value.replace(/^(\d{3})(\d{3})(\d{3})(\d{1,2})/, '$1.$2.$3-$4');
+            } else if (value.length > 6) {
+                value = value.replace(/^(\d{3})(\d{3})(\d{1,3})/, '$1.$2.$3');
+            } else if (value.length > 3) {
+                value = value.replace(/^(\d{3})(\d{1,3})/, '$1.$2');
+            }
+            e.target.value = value;
+        });
+
+        // Máscara Telefone
+        telefoneInput.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, ''); // Apenas números
+            if (value.length > 11) value = value.substring(0, 11);
+            if (value.length > 6) {
+                value = value.replace(/^(\d{2})(\d{5})(\d{1,4})/, '($1) $2-$3');
+            } else if (value.length > 2) {
+                value = value.replace(/^(\d{2})(\d{1,5})/, '($1) $2');
+            } else if (value.length > 0) {
+                value = value.replace(/^(\d{1,2})/, '($1');
+            }
+            e.target.value = value;
+        });
+        // ---------------------------------------------------
 
         // 4. Interceptar Submission do Form (Apenas PIX)
         const form = document.getElementById('checkoutForm');
