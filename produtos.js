@@ -138,59 +138,59 @@ const produtos = [
         variantes: []
     },
 
-    // ==================== SHORT DUPLO ====================
+    // ==================== CONJUNTO SHORT DUPLO ====================
     {
-        id: 20, nome: "Short Duplo Fitness Azul", precoOriginal: "139,90", badge: "",
-        descricao: "O Short Duplo Azul combina estilo com funcionalidade total. Com camada interna de compressão e camada externa solta, oferece segurança e liberdade de movimento para treinos de perna e corrida.",
+        id: 20, nome: "Conjunto Short Duplo Fitness Azul", precoOriginal: "139,90", badge: "",
+        descricao: "O Conjunto Short Duplo Azul combina estilo com funcionalidade total. Com camada interna de compressão e camada externa solta, oferece segurança e liberdade de movimento para treinos de perna e corrida.",
         caracteristicas: ["Design dupla camada com short interno de compressão", "Tecido externo leve e ventilado", "Cintura alta com cós elástico confortável", "Ideal para corrida, crossfit e musculação"],
         imagem: "images/shortduploazul.webp",
         variantes: []
     },
     {
-        id: 21, nome: "Short Duplo Fitness Branco", precoOriginal: "139,90", badge: "NOVO",
-        descricao: "O Short Duplo Branco entrega um visual clean e moderno para os seus treinos. A dupla camada garante que você se sinta segura em todos os movimentos, sem preocupações.",
+        id: 21, nome: "Conjunto Short Duplo Fitness Branco", precoOriginal: "139,90", badge: "NOVO",
+        descricao: "O Conjunto Short Duplo Branco entrega um visual clean e moderno para os seus treinos. A dupla camada garante que você se sinta segura em todos os movimentos, sem preocupações.",
         caracteristicas: ["Dupla camada que garante zero transparência", "Tecido anti-suor de secagem ultra-rápida", "Forro interno justo de alta compressão", "Não marca e não enrola durante exercícios"],
         imagem: "images/shortduplobranco.webp",
         variantes: []
     },
     {
-        id: 22, nome: "Short Duplo Fitness Marinho", precoOriginal: "139,90", badge: "",
-        descricao: "O Short Duplo Marinho é uma peça curinga no seu guarda-roupa fitness. A cor clássica combina com qualquer top e oferece toda a praticidade de uma peça versátil e funcional.",
+        id: 22, nome: "Conjunto Short Duplo Fitness Marinho", precoOriginal: "139,90", badge: "",
+        descricao: "O Conjunto Short Duplo Marinho é uma peça curinga no seu guarda-roupa fitness. A cor clássica combina com qualquer top e oferece toda a praticidade de uma peça versátil e funcional.",
         caracteristicas: ["Azul marinho versátil e fácil de combinar", "Camada interna com compressão leve", "Tecido que não acumula fiapos ou bolinhas", "Bolso lateral embutido para celular ou chaves"],
         imagem: "images/shortduplomarinho.webp",
         variantes: []
     },
     {
-        id: 23, nome: "Short Duplo Fitness Marrom", precoOriginal: "139,90", badge: "",
-        descricao: "O tom terroso do Short Duplo Marrom traz uma proposta diferente e moderna para o look fitness. Perfeito para combinar com os conjuntos de mesma tonalidade e montar um visual completo.",
+        id: 23, nome: "Conjunto Short Duplo Fitness Marrom", precoOriginal: "139,90", badge: "",
+        descricao: "O tom terroso do Conjunto Short Duplo Marrom traz uma proposta diferente e moderna para o look fitness. Perfeito para combinar com os conjuntos de mesma tonalidade e montar um visual completo.",
         caracteristicas: ["Tom nude/marrom super tendência", "Design que valoriza os glúteos", "Tecido com elasticidade 4-way stretch", "Lavável à máquina sem perder a forma"],
         imagem: "images/shortduplomarrom.webp",
         variantes: []
     },
     {
-        id: 24, nome: "Short Duplo Fitness Preto", precoOriginal: "139,90", badge: "FAVORITO",
-        descricao: "O clássico absoluto: Short Duplo Preto. Indispensável para qualquer mulher que treina, combina com todos os tops e funciona perfeitamente em qualquer modalidade esportiva.",
+        id: 24, nome: "Conjunto Short Duplo Fitness Preto", precoOriginal: "139,90", badge: "FAVORITO",
+        descricao: "O clássico absoluto: Conjunto Short Duplo Preto. Indispensável para qualquer mulher que treina, combina com todos os tops e funciona perfeitamente em qualquer modalidade esportiva.",
         caracteristicas: ["Preto básico indispensável para treinos", "Dupla camada com forro de alta compressão", "Tecido que mantém a forma após centenas de lavagens", "Anti-odor com tecnologia de fibra inteligente"],
         imagem: "images/shortduplopreto.webp",
         variantes: []
     },
     {
-        id: 25, nome: "Short Duplo Fitness Rosa", precoOriginal: "139,90", badge: "",
-        descricao: "O Short Duplo Rosa adiciona um toque feminino e delicado ao seu look de treino. Funcional e estiloso, é perfeito para quem quer arrasar dentro e fora da academia.",
+        id: 25, nome: "Conjunto Short Duplo Fitness Rosa", precoOriginal: "139,90", badge: "",
+        descricao: "O Conjunto Short Duplo Rosa adiciona um toque feminino e delicado ao seu look de treino. Funcional e estiloso, é perfeito para quem quer arrasar dentro e fora da academia.",
         caracteristicas: ["Rosa vibrante e feminino", "Camada dupla para segurança total", "Tecido respirável e ultra-leve", "Cós largo que não aperta e não rola"],
         imagem: "images/shortduplorosa.webp",
         variantes: []
     },
     {
-        id: 26, nome: "Short Duplo Fitness Roxo", precoOriginal: "139,90", badge: "",
-        descricao: "O Short Duplo Roxo combina personalidade com alta performance. Uma cor marcante para quem não tem medo de ousar e quer se sentir incrível durante cada série.",
+        id: 26, nome: "Conjunto Short Duplo Fitness Roxo", precoOriginal: "139,90", badge: "",
+        descricao: "O Conjunto Short Duplo Roxo combina personalidade com alta performance. Uma cor marcante para quem não tem medo de ousar e quer se sentir incrível durante cada série.",
         caracteristicas: ["Roxo vibrante e cheio de atitude", "Compressão interna que sustenta sem apertar", "Tecido com acabamento acetinado premium", "Não desbota e mantém a intensidade da cor"],
         imagem: "images/shortduploroxo.webp",
         variantes: []
     },
     {
-        id: 27, nome: "Short Duplo Fitness Vermelho", precoOriginal: "139,90", badge: "ESGOTANDO",
-        descricao: "Poder e intensidade no Short Duplo Vermelho. A cor chama atenção e transmite a energia que você precisa para dar tudo de si em cada treino. Destaque-se na academia!",
+        id: 27, nome: "Conjunto Short Duplo Fitness Vermelho", precoOriginal: "139,90", badge: "ESGOTANDO",
+        descricao: "Poder e intensidade no Conjunto Short Duplo Vermelho. A cor chama atenção e transmite a energia que você precisa para dar tudo de si em cada treino. Destaque-se na academia!",
         caracteristicas: ["Vermelho intenso que rouba a cena", "Design ergonômico para máximo conforto", "Tecido anti-pilling de longa duração", "Perfeito para treinos de alta intensidade"],
         imagem: "images/shortduplovermelho.webp",
         variantes: []
