@@ -34,12 +34,13 @@
         .accordion[open] summary::after { content: '−'; transform: rotate(180deg); color: var(--text-dark);}
         .accordion p { margin-top: 15px; font-size: 0.9rem; color: #666; line-height: 1.6; }
 
-        /* Barra flutuante nativa (Aparece ao scrollar muito a página) */
+        /* Barra flutuante nativa (Aparece ao scrollar) */
         .sticky-bottom-bar { position: fixed; bottom: 0; left: 0; width: 100%; background: rgba(255,255,255,0.95); backdrop-filter: blur(8px); padding: 15px; border-top: 1px solid #efefef; z-index: 100; box-shadow: 0 -4px 15px rgba(0,0,0,0.05); display: flex; justify-content: center; opacity: 0; visibility: hidden; transition: 0.3s ease-in-out; transform: translateY(20px);}
         .sticky-bottom-bar.visible { opacity: 1; visibility: visible; transform: translateY(0);}
         .btn-checkout { background: linear-gradient(135deg, #e60023, #cc001f) !important; }
         .btn-checkout:hover { background: linear-gradient(135deg, #cc001f, #a60019) !important; }
         .sticky-bottom-bar .btn-checkout { margin: 0; max-width: 500px; padding: 18px; font-size: 0.95rem; width: 100%;}
+        footer { padding-bottom: 80px !important; }
         
         .carousel-wrapper { position: relative; margin-left: -20px; margin-right: -20px; margin-bottom: 20px; overflow: hidden; }
         .carousel-container { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
@@ -340,19 +341,27 @@
         };
 
         // Lógica de Visibilidade do Botão Flutuante Inferior (Aumenta Conversão)
-        window.addEventListener('scroll', () => {
+        function checkStickyBar() {
             const bar = document.getElementById('stickyBar');
             const mainBtn = document.getElementById('mainCheckoutBtn');
-            if(!mainBtn) return;
-            const btnPos = mainBtn.getBoundingClientRect().top;
+            if(!mainBtn || !bar) return;
+            const btnRect = mainBtn.getBoundingClientRect();
+            const viewportHeight = window.innerHeight;
             
-            // Aparecer a barra fixa se o botão de cima original sair da tela
-            if(btnPos < -50) {
+            // Mostrar a barra fixa quando o botão principal sair da tela
+            if(btnRect.bottom < 0 || btnRect.top > viewportHeight) {
                 bar.classList.add('visible');
             } else {
                 bar.classList.remove('visible');
             }
-        });
+        }
+        
+        // Usar scroll event + check periódico para garantir funcionamento
+        window.addEventListener('scroll', checkStickyBar, { passive: true });
+        // Checar periodicamente caso o scroll event não dispare (conteúdo dinâmico)
+        setInterval(checkStickyBar, 500);
+        // Checar após renderização do conteúdo dinâmico
+        setTimeout(checkStickyBar, 100);
 
         // Lógica do Menu Lateral
         function openSidebar() {
