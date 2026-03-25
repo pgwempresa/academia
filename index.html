@@ -4,74 +4,138 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elena Store</title>
+    <title>Elena Store - Queima de Estoque</title>
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 
-    <!-- Meta Pixel Code -->
+    <!-- TikTok Pixel Code Start -->
     <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '1255725740021923');
-    fbq('track', 'PageView');
+        !function (w, d, t) {
+            w.TiktokAnalyticsObject = t; var ttq = w[t] = w[t] || []; ttq.methods = ["page", "track", "identify", "instances", "debug", "on", "off", "once", "ready", "alias", "group", "enableCookie", "disableCookie", "holdConsent", "revokeConsent", "grantConsent"], ttq.setAndDefer = function (t, e) { t[e] = function () { t.push([e].concat(Array.prototype.slice.call(arguments, 0))) } }; for (var i = 0; i < ttq.methods.length; i++)ttq.setAndDefer(ttq, ttq.methods[i]); ttq.instance = function (t) {
+                for (
+                    var e = ttq._i[t] || [], n = 0; n < ttq.methods.length; n++)ttq.setAndDefer(e, ttq.methods[n]); return e
+            }, ttq.load = function (e, n) {
+                var r = "https://analytics.tiktok.com/i18n/pixel/events.js", o = n && n.partner; ttq._i = ttq._i || {}, ttq._i[e] = [], ttq._i[e]._u = r, ttq._t = ttq._t || {}, ttq._t[e] = +new Date, ttq._o = ttq._o || {}, ttq._o[e] = n || {}; n = document.createElement("script")
+                    ; n.type = "text/javascript", n.async = !0, n.src = r + "?sdkid=" + e + "&lib=" + t; e = document.getElementsByTagName("script")[0]; e.parentNode.insertBefore(n, e)
+            };
+
+            ttq.load('D470E4RC77U2P8MCJJR0');
+            ttq.page();
+        }(window, document, 'ttq');
     </script>
-    <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=1255725740021923&ev=PageView&noscript=1"
-    /></noscript>
-    <!-- End Meta Pixel Code -->
+    <!-- TikTok Pixel Code End -->
 </head>
 
 <body>
-    <div class="container">
-        <!-- Main Image -->
-        <img src="images/giftbox.png" alt="Caixa de Presente" class="hero-image">
+    <!-- TELA DE CARREGAMENTO -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-content">
+            <img src="images/logo.png" alt="Elena Store" class="loading-logo">
+            <div class="loading-spinner"></div>
+            <p class="loading-text">Carregando promoção<span class="loading-dots"></span></p>
+            <div class="loading-bar-wrapper">
+                <div class="loading-bar" id="loadingBar"></div>
+            </div>
+        </div>
+    </div>
 
+    <!-- CONTEÚDO PRINCIPAL -->
+    <div class="container" id="mainContent" style="display: none;">
         <!-- Logo -->
         <img src="images/logo.png" alt="Elena Store" class="logo">
 
         <!-- Badge -->
         <div class="badge">
             <span class="dot"></span>
-            VOCÊ É A 17ª CLIENTE DE 20 ESCOLHIDAS
+            🔥 QUEIMA DE ESTOQUE — OFERTA DO DIA
         </div>
 
         <!-- Headers -->
-        <h1 class="main-title">Parabéns!</h1>
-        <p class="subtitle">Você ganhou uma peça</p>
-        <h2 class="free-title">TOTALMENTE GRÁTIS</h2>
+        <h1 class="main-title">Queima de Estoque!</h1>
+        <p class="subtitle">Todo conjunto fitness por</p>
+        <h2 class="free-title" style="font-size: 2rem; color: #e60023; letter-spacing: 1px;">R$ 49,90</h2>
+        <p class="subtitle" style="font-size: 0.85rem; margin-top: 2px;">+ <b style="color: #00a85f;">PRIMEIRO FRETE GRÁTIS</b></p>
 
         <!-- Timer Section -->
         <div class="timer-section">
-            <p class="timer-label">OFERTA EXPIRA EM</p>
+            <p class="timer-label">PROMOÇÃO ACABA EM</p>
             <div class="timer-display">
-                <div class="time-block" id="minutes">14</div>
+                <div class="time-block" id="hours">00</div>
                 <span class="separator">:</span>
-                <div class="time-block" id="seconds">54</div>
+                <div class="time-block" id="minutes">00</div>
+                <span class="separator">:</span>
+                <div class="time-block" id="seconds">00</div>
             </div>
-            <p class="warning-text">⚠️ Se você sair desta página, perderá a promoção</p>
+            <p class="warning-text">⚠️ Promoção válida somente até 23:59 de hoje!</p>
         </div>
 
         <!-- CTA -->
         <button class="cta-button" onclick="window.location.href='colecao.html'">
-            ESCOLHER MINHA PEÇA <span class="arrow">→</span>
+            APROVEITAR OFERTA <span class="arrow">→</span>
         </button>
-        <p class="footer-text">Restam apenas 3 peças disponíveis. Sem compromisso.</p>
+        <p class="footer-text">Preço único R$ 49,90 qualquer conjunto. Corra, estoque limitado!</p>
     </div>
 
     <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-    <script src="script.js"></script>
+    <script>
+        // Loading Screen Logic (5 seconds)
+        document.addEventListener('DOMContentLoaded', () => {
+            const loadingBar = document.getElementById('loadingBar');
+            const loadingScreen = document.getElementById('loadingScreen');
+            const mainContent = document.getElementById('mainContent');
+
+            // Animate loading bar over 5 seconds
+            let progress = 0;
+            const loadInterval = setInterval(() => {
+                progress += 2;
+                loadingBar.style.width = progress + '%';
+                if (progress >= 100) {
+                    clearInterval(loadInterval);
+                }
+            }, 100);
+
+            setTimeout(() => {
+                loadingScreen.style.opacity = '0';
+                loadingScreen.style.transform = 'scale(1.05)';
+                setTimeout(() => {
+                    loadingScreen.style.display = 'none';
+                    mainContent.style.display = 'flex';
+                    mainContent.style.animation = 'fadeInPage 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards';
+                }, 400);
+            }, 5000);
+
+            // Countdown Timer until 23:59 (resets daily)
+            function updateCountdown() {
+                const now = new Date();
+                const endOfDay = new Date();
+                endOfDay.setHours(23, 59, 59, 999);
+
+                const diff = endOfDay - now;
+                if (diff <= 0) {
+                    document.getElementById('hours').textContent = '00';
+                    document.getElementById('minutes').textContent = '00';
+                    document.getElementById('seconds').textContent = '00';
+                    return;
+                }
+
+                const hours = Math.floor(diff / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+                document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+                document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+                document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+            }
+
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+        });
+    </script>
 </body>
 
 </html>

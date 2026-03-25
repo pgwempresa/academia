@@ -7,23 +7,18 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="checkout.css">
 
-    <!-- Meta Pixel Code -->
+    <!-- TikTok Pixel Code Start -->
     <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '1255725740021923');
-    fbq('track', 'PageView');
+    !function (w, d, t) {
+      w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(
+      var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script")
+      ;n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
+
+      ttq.load('D470E4RC77U2P8MCJJR0');
+      ttq.page();
+    }(window, document, 'ttq');
     </script>
-    <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=1255725740021923&ev=PageView&noscript=1"
-    /></noscript>
-    <!-- End Meta Pixel Code -->
+    <!-- TikTok Pixel Code End -->
 </head>
 <body>
 
@@ -35,7 +30,7 @@
     </header>
 
     <div class="timer-banner">
-        ⚠️ Suas peças estão reservadas por <span id="timerMin">14</span>:<span id="timerSec">54</span> minutos.
+        🔥 QUEIMA DE ESTOQUE — Oferta acaba em <span id="timerHrs">00</span>:<span id="timerMin">00</span>:<span id="timerSec">00</span>
     </div>
 
     <form class="container-checkout" id="checkoutForm">
@@ -104,51 +99,51 @@
                 <div class="summary-details">
                     <div class="summary-title" id="chkTitle">Carregando produto...</div>
                     <div id="chkOptions" style="font-size: 0.8rem; color: #666; margin-bottom: 6px; font-weight: 500;"></div>
-                    <div class="summary-price">TOTALMENTE GRÁTIS</div>
+                    <div class="summary-price" style="color: #e60023; font-weight: 800;">R$ 49,90</div>
                 </div>
             </div>
 
             <!-- Frete Options -->
-            <label class="shipping-option" id="lblFrete1">
-                <input type="radio" name="freteOpt" value="16.44" class="shipping-radio">
+            <label class="shipping-option selected" id="lblFrete1">
+                <input type="radio" name="freteOpt" value="0" class="shipping-radio" checked>
                 <div class="shipping-info">
-                    <div class="shipping-title">Entrega Normal</div>
+                    <div class="shipping-title">Entrega Normal <span style="color: #00a85f; font-weight: 700;">GRÁTIS</span></div>
                     <div class="shipping-desc">Receba em 10 a 15 dias úteis</div>
                 </div>
-                <div class="shipping-price">R$ 16,44</div>
+                <div class="shipping-price" style="color: #00a85f; font-weight: 700;">GRÁTIS</div>
             </label>
 
-            <label class="shipping-option selected" id="lblFrete2">
-                <input type="radio" name="freteOpt" value="21.44" class="shipping-radio" checked>
+            <label class="shipping-option" id="lblFrete2">
+                <input type="radio" name="freteOpt" value="14.90" class="shipping-radio">
                 <div class="shipping-info">
                     <div class="shipping-title">Frete Expresso</div>
                     <div class="shipping-desc">Receba em 5 a 8 dias úteis</div>
                 </div>
-                <div class="shipping-price">R$ 21,44</div>
+                <div class="shipping-price">R$ 14,90</div>
             </label>
 
             <label class="shipping-option" id="lblFrete3">
-                <input type="radio" name="freteOpt" value="27.93" class="shipping-radio">
+                <input type="radio" name="freteOpt" value="24.90" class="shipping-radio">
                 <div class="shipping-info">
                     <div class="shipping-title">SEDEX</div>
                     <div class="shipping-desc">Receba em 2 a 4 dias úteis</div>
                 </div>
-                <div class="shipping-price">R$ 27,93</div>
+                <div class="shipping-price">R$ 24,90</div>
             </label>
 
             <!-- Totais -->
             <div style="margin-top: 20px;">
                 <div class="totals-row">
-                    <span>Subtotal</span>
-                    <span>R$ 0,00</span>
+                    <span>Subtotal (1 conjunto)</span>
+                    <span>R$ 49,90</span>
                 </div>
                 <div class="totals-row">
-                    <span>Taxa de Frete</span>
-                    <span id="valorFreteVisual">R$ 21,44</span>
+                    <span>Frete</span>
+                    <span id="valorFreteVisual" style="color: #00a85f; font-weight: 700;">GRÁTIS</span>
                 </div>
                 <div class="totals-row grand-total">
                     <span>Total a pagar</span>
-                    <span id="valorTotalFinal">R$ 21,44</span>
+                    <span id="valorTotalFinal">R$ 49,90</span>
                 </div>
             </div>
         </div>
@@ -223,7 +218,8 @@
         const colorParam = urlParams.get('color');
         const imgParam = urlParams.get('img');
         
-        const produto = typeof produtos !== 'undefined' ? (produtos.find(p => p.id === prodId) || produtos[0]) : { nome: "Produto Grátis", imagem: "images/giftbox.png" };
+        const produto = typeof produtos !== 'undefined' ? (produtos.find(p => p.id === prodId) || produtos[0]) : { nome: "Conjunto Fitness", imagem: "images/giftbox.png" };
+        const PRODUCT_PRICE = 49.90;
         
         document.getElementById('chkTitle').innerText = produto.nome;
         document.getElementById('chkImg').src = imgParam ? decodeURIComponent(imgParam) : produto.imagem;
@@ -239,7 +235,8 @@
         }
 
         // Variável de controle do frete
-        let totalVal = 21.44; 
+        let freteVal = 0; // Primeiro frete grátis
+        let totalVal = PRODUCT_PRICE + freteVal;
 
         // 2. Lógica de atualização do Frete
         const radios = document.querySelectorAll('.shipping-radio');
@@ -252,30 +249,42 @@
                 
                 const input = label.querySelector('input');
                 input.checked = true;
-                totalVal = parseFloat(input.value);
+                freteVal = parseFloat(input.value);
+                totalVal = PRODUCT_PRICE + freteVal;
                 atualizarValores();
             });
         });
         // 3. Atualizar e exibir totais do Frete
         function atualizarValores() {
-            let totalExib = totalVal.toFixed(2).replace('.', ',');
             const elVisual = document.getElementById('valorFreteVisual');
-            if(elVisual) elVisual.innerText = "R$ " + totalExib;
+            if(elVisual) {
+                if(freteVal === 0) {
+                    elVisual.innerText = 'GRÁTIS';
+                    elVisual.style.color = '#00a85f';
+                    elVisual.style.fontWeight = '700';
+                } else {
+                    elVisual.innerText = 'R$ ' + freteVal.toFixed(2).replace('.', ',');
+                    elVisual.style.color = '';
+                    elVisual.style.fontWeight = '';
+                }
+            }
             
             const elFinal = document.getElementById('valorTotalFinal');
-            if(elFinal) elFinal.innerText = "R$ " + totalExib;
+            if(elFinal) elFinal.innerText = 'R$ ' + totalVal.toFixed(2).replace('.', ',');
         }
         atualizarValores();
 
-        // Meta Pixel Event: InitiateCheckout
-        fbq('track', 'InitiateCheckout', {
-            content_ids: [String(prodId)],
-            content_name: produto.nome,
-            content_type: 'product',
-            value: totalVal,
-            currency: 'BRL',
-            num_items: 1
-        });
+        // TikTok Event: InitiateCheckout
+        if(typeof ttq !== 'undefined') {
+            ttq.track('InitiateCheckout', {
+                content_type: 'product',
+                content_id: String(prodId),
+                content_name: produto.nome,
+                value: totalVal,
+                currency: 'BRL',
+                quantity: 1
+            });
+        }
 
         // --- MÁSCARAS E PREENCHIMENTO AUTOMÁTICO VIA-CEP ---
         const cepInput = document.getElementById('chkCep');
@@ -357,6 +366,8 @@
             btn.disabled = true;
 
             const totalAmountCents = Math.round(totalVal * 100);
+            const freteAmountCents = Math.round(freteVal * 100);
+            const productAmountCents = Math.round(PRODUCT_PRICE * 100);
             const stateValue = document.getElementById('chkEstado').value.replace(/[^a-zA-Z]/g, '').toUpperCase();
             
             const payload = {
@@ -381,7 +392,7 @@
                     }
                 },
                 shipping: {
-                    fee: totalAmountCents, // todo o valor é de frete já que a peça é "grátis"
+                    fee: freteAmountCents,
                     address: {
                         street: document.getElementById('chkRua').value,
                         zipCode: document.getElementById('chkCep').value.replace(/\D/g, ''),
@@ -394,13 +405,13 @@
                 items: [
                     {
                         title: produto.nome.substring(0, 99),
-                        unitPrice: 0,
+                        unitPrice: productAmountCents,
                         quantity: 1,
                         tangible: true
                     }
                 ],
                 pix: {
-                    expiresInDays: 1 // 1 dia
+                    expiresInDays: 1
                 }
             };
 
@@ -438,14 +449,17 @@
                     "";
                 
                 if (response.ok && transactionId) {
-                    // Meta Pixel Event: AddPaymentInfo (PIX Gerado)
-                    fbq('track', 'AddPaymentInfo', {
-                        content_ids: [String(prodId)],
-                        content_name: produto.nome,
-                        content_type: 'product',
-                        value: totalVal,
-                        currency: 'BRL'
-                    });
+                    // TikTok Event: CompletePayment (PIX Gerado)
+                    if(typeof ttq !== 'undefined') {
+                        ttq.track('CompletePayment', {
+                            content_type: 'product',
+                            content_id: String(prodId),
+                            content_name: produto.nome,
+                            value: totalVal,
+                            currency: 'BRL',
+                            quantity: 1
+                        });
+                    }
 
                     localStorage.setItem('lastPixData', JSON.stringify({
                         id: transactionId,
@@ -476,18 +490,25 @@
             alert("Código PIX copiado!");
         }
 
-        // 6. Cronômetro de Urgência
-        let time = (14 * 60) + 54;
+        // 6. Cronômetro até 23:59 (reseta diariamente)
+        const hrsEl = document.getElementById('timerHrs');
         const minEl = document.getElementById('timerMin');
         const secEl = document.getElementById('timerSec');
-        setInterval(() => {
-            if(time <= 0) return;
-            time--;
-            const mins = Math.floor(time / 60);
-            const secs = time % 60;
-            minEl.innerText = mins < 10 ? '0'+mins : mins;
-            secEl.innerText = secs < 10 ? '0'+secs : secs;
-        }, 1000);
+        function updateCheckoutTimer() {
+            const now = new Date();
+            const endOfDay = new Date();
+            endOfDay.setHours(23, 59, 59, 999);
+            const diff = endOfDay - now;
+            if (diff <= 0) return;
+            const h = Math.floor(diff / (1000 * 60 * 60));
+            const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((diff % (1000 * 60)) / 1000);
+            hrsEl.innerText = h.toString().padStart(2, '0');
+            minEl.innerText = m.toString().padStart(2, '0');
+            secEl.innerText = s.toString().padStart(2, '0');
+        }
+        updateCheckoutTimer();
+        setInterval(updateCheckoutTimer, 1000);
 
     </script>
 </body>
