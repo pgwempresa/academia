@@ -1,4 +1,61 @@
 const produtos = [
+    // ==================== CONJUNTO AVA (QUEIMA DE ESTOQUE) ====================
+    {
+        id: 28, nome: "Conjunto Fitness Ava Amarelo", precoOriginal: "199,90", badge: "NOVO",
+        descricao: "O Conjunto Ava Amarelo traz luminosidade e energia para o seu treino. Com tecido de alta elasticidade e toque macio, garante conforto absoluto e um visual vibrante na academia.",
+        caracteristicas: ["Tecido ultra-elástico", "Cintura alta compressiva", "Toque gelado e respirável", "Proteção UV 50+"],
+        imagem: "images/AnyConv.com__conjuntoavaamarelo.webp",
+        variantes: []
+    },
+    {
+        id: 29, nome: "Conjunto Fitness Ava Azul", precoOriginal: "199,90", badge: "",
+        descricao: "O Conjunto Ava Azul é perfeito para quem busca serenidade e foco. A tonalidade azul profunda transmite confiança, enquanto a modelagem anatômica valoriza suas curvas com sustentação.",
+        caracteristicas: ["Modelagem anatômica", "Tecido dry-fit premium", "Cós largo anatômico", "Secagem rápida"],
+        imagem: "images/AnyConv.com__conjuntoavaazul.webp",
+        variantes: []
+    },
+    {
+        id: 30, nome: "Conjunto Fitness Ava Branco", precoOriginal: "209,90", badge: "LANÇAMENTO",
+        descricao: "O Conjunto Ava Branco é o auge da sofisticação. Com tecido de gramatura superior que garante zero transparência, é a peça ideal para um look fitness clean e luxuoso.",
+        caracteristicas: ["Gramatura superior (zero transparência)", "Design minimalista premium", "Toque aveludado", "Compressão estratégica"],
+        imagem: "images/AnyConv.com__conjuntoavabranco.webp",
+        variantes: [
+            { cor: "Frente", img: "images/AnyConv.com__conjuntoavabranco2.webp" },
+            { cor: "Verso", img: "images/AnyConv.com__conjuntoavabranco3.webp" },
+            { cor: "Detalhe", img: "images/AnyConv.com__conjuntoavabranco4.webp" }
+        ]
+    },
+    {
+        id: 31, nome: "Conjunto Fitness Ava Marrom", precoOriginal: "199,90", badge: "",
+        descricao: "A elegância dos tons terrosos no Conjunto Ava Marrom. Uma peça versátil que combina tecnologia fitness com a cor mais desejada da temporada.",
+        caracteristicas: ["Tom terroso em tendência", "Tecido com controle de umidade", "Ajuste firme e confortável", "Costuras reforçadas"],
+        imagem: "images/AnyConv.com__conjuntoavamarrom.webp",
+        variantes: []
+    },
+    {
+        id: 32, nome: "Conjunto Fitness Ava Preto", precoOriginal: "199,90", badge: "ESSENCIAL",
+        descricao: "O Conjunto Ava Preto é o seu melhor aliado em qualquer treino. Poderoso, discreto e extremamente confortável, é a peça base que toda mulher precisa ter.",
+        caracteristicas: ["Preto profundo (não desbota)", "Alta compressão modeladora", "Cós alto que não desce", "Durabilidade excepcional"],
+        imagem: "images/AnyConv.com__conjuntoavapreto.webp",
+        variantes: []
+    },
+    {
+        id: 33, nome: "Conjunto Fitness Ava Rosa", precoOriginal: "199,90", badge: "QUERIDINHO",
+        descricao: "Feminilidade e performance se unem no Conjunto Ava Rosa. Um tom de rosa equilibrado que traz estilo para o seu treino com toda a liberdade de movimento que você merece.",
+        caracteristicas: ["Cor vibrante e feminina", "Tecido respirável", "Elasticidade 4-way stretch", "Modelagem levanta bumbum"],
+        imagem: "images/AnyConv.com__conjuntoavarosa2.webp",
+        variantes: [
+            { cor: "Detalhe", img: "images/AnyConv.com__conjuntoavarosa3.webp" }
+        ]
+    },
+    {
+        id: 34, nome: "Conjunto Fitness Ava Verde", precoOriginal: "199,90", badge: "NOVO",
+        descricao: "O Conjunto Ava Verde traz o frescor da natureza para a sua rotina de exercícios. Sinta-se renovada e pronta para superar seus limites com este conjunto tecnológico.",
+        caracteristicas: ["Tecido com tecnologia anti-odor", "Proteção térmica", "Cintura alta segura", "Não marca o corpo"],
+        imagem: "images/AnyConv.com__conjuntoavaverde.webp",
+        variantes: []
+    },
+
     // ==================== CONJUNTO ANA ====================
     {
         id: 1, nome: "Conjunto Fitness Ana Branco", precoOriginal: "189,90", badge: "NOVO",
@@ -53,14 +110,14 @@ const produtos = [
     },
     {
         id: 8, nome: "Conjunto Fitness Bianca Marrom com Preto", precoOriginal: "229,90", badge: "FAVORITO",
-        descricao: "A combinação marrom com preto do Conjunto Bianca entrega um visual poderoso e moderno. O contraste de cores traz personalidade ao look fitness com toda a tecnologia que você precisa.",
+        descricao: "A combinação marrom com preto do Conjunto Bianca entrega um visual poderoso e moderno. O contraste de cores traz personalidade ao look fitness com toda the tecnologia que você precisa.",
         caracteristicas: ["Design bicolor exclusivo e sofisticado", "Tecido dupla face de alta compressão", "Sustentação extra no busto com bojo removível", "Não desbota mesmo com lavagens frequentes"],
         imagem: "images/conjuntobiancamarromcompreto.webp",
         variantes: []
     },
     {
         id: 9, nome: "Conjunto Fitness Bianca Preto com Roxo", precoOriginal: "229,90", badge: "",
-        descricao: "Ousadia e estilo se encontram no Conjunto Bianca Preto com Roxo. A combinação de cores impactante garante que você será notada em qualquer ambiente fitness.",
+        descricao: "Oousadia e estilo se encontram no Conjunto Bianca Preto com Roxo. A combinação de cores impactante garante que você será notada em qualquer ambiente fitness.",
         caracteristicas: ["Contraste de cores vibrante e moderno", "Tecido respirável com secagem instantânea", "Compressão que define a silhueta", "Costuras flatlock para máximo conforto"],
         imagem: "images/conjuntobiancapretocomroxo.webp",
         variantes: []
@@ -97,7 +154,7 @@ const produtos = [
     },
     {
         id: 14, nome: "Conjunto Fitness Luana Branco", precoOriginal: "249,90", badge: "",
-        descricao: "Pureza e sofisticação no Conjunto Luana Branco. Com tecido de dupla camada que garante zero transparência, é a escolha perfeita para quem quer um visual clean e poderoso na academia.",
+        descricao: "Pureza e sofisticação no Conjunto Luana Branco. Com tecido de dupla camada que garante zero transparência, é the escolha perfeita para quem quer um visual clean e poderoso na academia.",
         caracteristicas: ["Tecido dupla camada anti-transparência", "Branco que não amarela com o tempo", "Sustentação de alta performance", "Design minimalista e elegante"],
         imagem: "images/conjuntoluanabranco.webp",
         variantes: []
@@ -105,13 +162,13 @@ const produtos = [
     {
         id: 15, nome: "Conjunto Fitness Luana Marrom", precoOriginal: "249,90", badge: "",
         descricao: "O tom marrom do Conjunto Luana é pura tendência no universo fitness. Sofisticado e fácil de combinar, ele transmite uma vibe de quem sabe exatamente o que quer.",
-        caracteristicas: ["Tom nude/marrom em alta no mercado fitness", "Tecido com toque aveludado e macio", "Cintura extra alta para máxima segurança", "Modelagem que realça os glúteos naturalmente"],
+        caracteristicas: ["Tom nude/marrom em alta no mercado fitness", "Tecido with toque aveludado e macio", "Cintura extra alta para máxima segurança", "Modelagem que realça os glúteos naturalmente"],
         imagem: "images/conjuntoluanamarrom.webp",
         variantes: []
     },
     {
         id: 16, nome: "Conjunto Fitness Luana Rosa", precoOriginal: "249,90", badge: "NOVO",
-        descricao: "Feminilidade e força no Conjunto Luana Rosa. A cor delicada contrasta com a potência do tecido de alta performance, criando um equilíbrio perfeito entre beleza e funcionalidade.",
+        descricao: "Feminilidade e força no Conjunto Luana Rosa. A cor delicada contrasta com the potência do tecido de alta performance, criando um equilíbrio perfeito entre beleza e funcionalidade.",
         caracteristicas: ["Rosa millennial super em alta", "Tecido com tecnologia seamless", "Compressão que estiliza sem apertar", "Elástico interno que mantém tudo no lugar"],
         imagem: "images/conjuntoluanarosa.webp",
         variantes: []
@@ -142,7 +199,7 @@ const produtos = [
     {
         id: 20, nome: "Conjunto Short Duplo Fitness Azul", precoOriginal: "139,90", badge: "",
         descricao: "O Conjunto Short Duplo Azul combina estilo com funcionalidade total. Com camada interna de compressão e camada externa solta, oferece segurança e liberdade de movimento para treinos de perna e corrida.",
-        caracteristicas: ["Design dupla camada com short interno de compressão", "Tecido externo leve e ventilado", "Cintura alta com cós elástico confortável", "Ideal para corrida, crossfit e musculação"],
+        caracteristicas: ["Design dupla camada with short interno de compressão", "Tecido externo leve e ventilado", "Cintura alta com cós elástico confortável", "Ideal para corrida, crossfit e musculação"],
         imagem: "images/shortduploazul.webp",
         variantes: []
     },
@@ -155,8 +212,8 @@ const produtos = [
     },
     {
         id: 22, nome: "Conjunto Short Duplo Fitness Marinho", precoOriginal: "139,90", badge: "",
-        descricao: "O Conjunto Short Duplo Marinho é uma peça curinga no seu guarda-roupa fitness. A cor clássica combina com qualquer top e oferece toda a praticidade de uma peça versátil e funcional.",
-        caracteristicas: ["Azul marinho versátil e fácil de combinar", "Camada interna com compressão leve", "Tecido que não acumula fiapos ou bolinhas", "Bolso lateral embutido para celular ou chaves"],
+        descricao: "O Conjunto Short Duplo Marinho é uma peça curinga no seu guarda-roupa fitness. A cor clássica combina com qualquer top e oferece toda the praticidade de uma peça versátil e funcional.",
+        caracteristicas: ["Azul marinho versátil e fácil de combinar", "Camada interna with compressão leve", "Tecido que não acumula fiapos ou bolinhas", "Bolso lateral embutido para celular ou chaves"],
         imagem: "images/shortduplomarinho.webp",
         variantes: []
     },
@@ -184,13 +241,13 @@ const produtos = [
     {
         id: 26, nome: "Conjunto Short Duplo Fitness Roxo", precoOriginal: "139,90", badge: "",
         descricao: "O Conjunto Short Duplo Roxo combina personalidade com alta performance. Uma cor marcante para quem não tem medo de ousar e quer se sentir incrível durante cada série.",
-        caracteristicas: ["Roxo vibrante e cheio de atitude", "Compressão interna que sustenta sem apertar", "Tecido com acabamento acetinado premium", "Não desbota e mantém a intensidade da cor"],
+        caracteristicas: ["Roxo vibrante e cheio de atitude", "Compressão interna que sustenta sem apertar", "Tecido com acabamento acetinado premium", "Não desbota e mantém the intensidade da cor"],
         imagem: "images/shortduploroxo.webp",
         variantes: []
     },
     {
         id: 27, nome: "Conjunto Short Duplo Fitness Vermelho", precoOriginal: "139,90", badge: "ESGOTANDO",
-        descricao: "Poder e intensidade no Conjunto Short Duplo Vermelho. A cor chama atenção e transmite a energia que você precisa para dar tudo de si em cada treino. Destaque-se na academia!",
+        descricao: "Poder e intensidade no Conjunto Short Duplo Vermelho. A cor chama atenção e transmite the energia que você precisa para dar tudo de si em cada treino. Destaque-se na academia!",
         caracteristicas: ["Vermelho intenso que rouba a cena", "Design ergonômico para máximo conforto", "Tecido anti-pilling de longa duração", "Perfeito para treinos de alta intensidade"],
         imagem: "images/shortduplovermelho.webp",
         variantes: []
