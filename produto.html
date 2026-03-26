@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Queima de Estoque - Elena Store</title>
+    <title>Conjuntos Fitness - Elena Store</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="pages.css">
 
@@ -34,11 +34,8 @@
         .accordion[open] summary::after { content: '−'; transform: rotate(180deg); color: var(--text-dark);}
         .accordion p { margin-top: 15px; font-size: 0.9rem; color: #666; line-height: 1.6; }
 
-        /* Barra flutuante nativa (Aparece ao scrollar) */
         .sticky-bottom-bar { position: fixed; bottom: 0; left: 0; width: 100%; background: rgba(255,255,255,0.95); backdrop-filter: blur(8px); padding: 15px; border-top: 1px solid #efefef; z-index: 100; box-shadow: 0 -4px 15px rgba(0,0,0,0.05); display: flex; justify-content: center; opacity: 0; visibility: hidden; transition: 0.3s ease-in-out; transform: translateY(20px);}
         .sticky-bottom-bar.visible { opacity: 1; visibility: visible; transform: translateY(0);}
-        .btn-checkout { background: linear-gradient(135deg, #e60023, #cc001f) !important; }
-        .btn-checkout:hover { background: linear-gradient(135deg, #cc001f, #a60019) !important; }
         .sticky-bottom-bar .btn-checkout { margin: 0; max-width: 500px; padding: 18px; font-size: 0.95rem; width: 100%;}
         footer { padding-bottom: 80px !important; }
         
@@ -64,7 +61,7 @@
             <li><a href="javascript:void(0)">✨ Novidades</a></li>
             <li><a href="javascript:void(0)">💪 Conjuntos Fitness</a></li>
             <li><a href="javascript:void(0)">🩳 Shorts</a></li>
-            <li><a href="javascript:void(0)">🔥 Queima de Estoque</a></li>
+            <li><a href="javascript:void(0)">🔥 Conjuntos Fitness</a></li>
             <li><a href="javascript:void(0)">🏋️ Acessórios</a></li>
             <hr>
             <li><a href="javascript:void(0)">👤 Minha Conta</a></li>
@@ -74,21 +71,20 @@
     </div>
 
     <header>
+        <div class="black-banner">🔥 CONJUNTOS FITNESS — FRETE GRÁTIS PARA TODO O BRASIL</div>
         <div class="top-nav" style="display:flex; justify-content:center; align-items:center; position: relative;">
             <button onclick="openSidebar()" style="position: absolute; left: 15px; background:none; border:none; font-size:1.6rem; cursor:pointer; color:var(--text-dark); padding: 5px;">☰</button>
             <img src="images/logo.png" alt="Elena Store" class="nav-logo" onerror="this.style.display='none'" style="max-height: 58px;">
         </div>
-        <div class="warning-banner" style="background:#000; color:#fff;">🔥 QUEIMA DE ESTOQUE — TODO CONJUNTO POR R$ 49,90 + PRIMEIRO FRETE GRÁTIS</div>
     </header>
 
     <main class="product-page-container" id="productDetail" style="padding-bottom: 60px;">
         <!-- Injetado por Javascript dinamicamente -->
     </main>
 
-    <!-- Barra Rápida de Compra Fixa Mobile -->
     <div class="sticky-bottom-bar" id="stickyBar">
-        <button class="btn-checkout" onclick="goToCheckout()">
-            COMPRAR AGORA — R$ 49,90 →
+        <button class="btn-checkout" id="stickyBtnCheckout" onclick="goToCheckout()">
+            COMPRAR
         </button>
     </div>
 
@@ -136,6 +132,10 @@
             
             window.location.href = `checkout.html?id=${produto.id}&size=${size}${colorParam}${imgSrcParam}`;
         }
+
+        // Atualiza Botão Flutuante Nativo de Compra
+        const stickyBtn = document.getElementById('stickyBtnCheckout');
+        if(stickyBtn) stickyBtn.innerText = `COMPRAR`;
 
         // TikTok Event: AddToCart (disparado ao clicar em Resgatar)
         const originalGoToCheckout = goToCheckout;
@@ -190,12 +190,12 @@
             </div>
 
             <div class="price-line" style="font-size: 1.6rem; margin-bottom: 15px; display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap;">
-                <span class="price-free" style="color: #e60023; font-weight: 800; font-size: 1.8rem; line-height: 1;">R$ 49,90</span>
+                <span class="price-free" style="color: #00a85f; font-weight: 800; font-size: 1.8rem; line-height: 1;">R$ ${produto.preco}</span>
                 <span class="price-old" style="font-size: 1.15rem; color: var(--warning-red); font-weight: 600;">R$ ${produto.precoOriginal}</span>
             </div>
             <div style="display: flex; gap: 15px; margin-bottom: 30px; flex-wrap: wrap;">
                 <span style="font-size: 0.8rem; color: #00a85f; font-weight: 700;">🚚 Primeiro Frete Grátis</span>
-                <span style="font-size: 0.8rem; color: #e60023; font-weight: 600;">🔥 Queima de Estoque</span>
+                <span style="font-size: 0.8rem; color: #e60023; font-weight: 600;">🔥 Conjuntos Fitness</span>
             </div>
 
             ${produto.variantes && produto.variantes.length > 0 ? `
@@ -231,7 +231,7 @@
             </div>
 
             <button class="btn-checkout" onclick="goToCheckout()" style="margin-bottom: 25px;" id="mainCheckoutBtn">
-                COMPRAR AGORA — R$ 49,90 →
+                COMPRAR
             </button>
             
             <!-- Trust Badges Visuais -->

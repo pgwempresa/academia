@@ -29,9 +29,6 @@
         </div>
     </header>
 
-    <div class="timer-banner">
-        🔥 QUEIMA DE ESTOQUE — Oferta acaba em <span id="timerHrs">00</span>:<span id="timerMin">00</span>:<span id="timerSec">00</span>
-    </div>
 
     <form class="container-checkout" id="checkoutForm">
 
@@ -99,7 +96,7 @@
                 <div class="summary-details">
                     <div class="summary-title" id="chkTitle">Carregando produto...</div>
                     <div id="chkOptions" style="font-size: 0.8rem; color: #666; margin-bottom: 6px; font-weight: 500;"></div>
-                    <div class="summary-price" style="color: #e60023; font-weight: 800;">R$ 49,90</div>
+                    <div class="summary-price" id="chkPrice" style="color: #00a85f; font-weight: 800;">R$ --,--</div>
                 </div>
             </div>
 
@@ -135,7 +132,7 @@
             <div style="margin-top: 20px;">
                 <div class="totals-row">
                     <span>Subtotal (1 conjunto)</span>
-                    <span>R$ 49,90</span>
+                    <span id="valorSubtotal">R$ --,--</span>
                 </div>
                 <div class="totals-row">
                     <span>Frete</span>
@@ -143,7 +140,7 @@
                 </div>
                 <div class="totals-row grand-total">
                     <span>Total a pagar</span>
-                    <span id="valorTotalFinal">R$ 49,90</span>
+                    <span id="valorTotalFinal">R$ --,--</span>
                 </div>
             </div>
         </div>
@@ -208,45 +205,13 @@
         </div>
 
         <!-- Informações de Contato e Credibilidade -->
-        <div class="card" style="background: #fafafa; border: 1px solid #eee;">
-            <div class="card-header" style="font-size: 0.9rem;">🏪 Quem Somos</div>
-            <div style="padding: 5px 0;">
-                <p style="font-size: 0.85rem; color: #555; line-height: 1.6; margin-bottom: 15px;">
-                    <b>Elena Store</b> — Mais de 8 anos no mercado de moda fitness feminina, com milhares de clientes satisfeitas em todo o Brasil.
-                </p>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 15px;">
-                    <div style="text-align: center; padding: 12px; background: #fff; border-radius: 6px; border: 1px solid #eee;">
-                        <span style="font-size: 1.4rem; display: block; margin-bottom: 5px;">📧</span>
-                        <span style="font-size: 0.75rem; color: #555; font-weight: 500;">contato@elenastore.com.br</span>
-                    </div>
-                    <div style="text-align: center; padding: 12px; background: #fff; border-radius: 6px; border: 1px solid #eee;">
-                        <span style="font-size: 1.4rem; display: block; margin-bottom: 5px;">📱</span>
-                        <span style="font-size: 0.75rem; color: #555; font-weight: 500;">(11) 99876-5432</span>
-                    </div>
-                    <div style="text-align: center; padding: 12px; background: #fff; border-radius: 6px; border: 1px solid #eee;">
-                        <span style="font-size: 1.4rem; display: block; margin-bottom: 5px;">📍</span>
-                        <span style="font-size: 0.75rem; color: #555; font-weight: 500;">São Paulo — SP</span>
-                    </div>
-                    <div style="text-align: center; padding: 12px; background: #fff; border-radius: 6px; border: 1px solid #eee;">
-                        <span style="font-size: 1.4rem; display: block; margin-bottom: 5px;">🕐</span>
-                        <span style="font-size: 0.75rem; color: #555; font-weight: 500;">Seg a Sex: 9h às 18h</span>
-                    </div>
-                </div>
-                <div style="display: flex; justify-content: space-around; padding: 15px 0; border-top: 1px dashed #e0e0e0;">
-                    <div style="text-align: center; font-size: 0.7rem; color: #444; font-weight: 600;">
-                        <span style="font-size: 1.3rem; display: block; margin-bottom: 4px;">🔒</span>Compra<br>Segura
-                    </div>
-                    <div style="text-align: center; font-size: 0.7rem; color: #444; font-weight: 600;">
-                        <span style="font-size: 1.3rem; display: block; margin-bottom: 4px;">📦</span>Envio<br>Rastreado
-                    </div>
-                    <div style="text-align: center; font-size: 0.7rem; color: #444; font-weight: 600;">
-                        <span style="font-size: 1.3rem; display: block; margin-bottom: 4px;">🔄</span>Troca<br>Grátis
-                    </div>
-                    <div style="text-align: center; font-size: 0.7rem; color: #444; font-weight: 600;">
-                        <span style="font-size: 1.3rem; display: block; margin-bottom: 4px;">⭐</span>+8 Anos<br>de Mercado
-                    </div>
-                </div>
-            </div>
+        <!-- Informações de Contato e Credibilidade (Rodapé Padrão) -->
+        <div style="text-align: center; margin-top: 30px; margin-bottom: 20px; font-size: 0.75rem; color: #888; line-height: 1.6;">
+            <strong>Elena Store</strong><br>
+            CNPJ: 14.333.222/0001-99<br>
+            contato@elenastore.com.br — WhatsApp: (11) 99876-5432<br>
+            Atendimento: Segunda a Sexta, das 9h às 18h<br>
+            São Paulo, SP
         </div>
 
     </form>
@@ -261,7 +226,9 @@
         const imgParam = urlParams.get('img');
         
         const produto = typeof produtos !== 'undefined' ? (produtos.find(p => p.id === prodId) || produtos[0]) : { nome: "Conjunto Fitness", imagem: "images/giftbox.png" };
-        const PRODUCT_PRICE = 49.90;
+        const PRODUCT_PRICE = parseFloat((produto.preco || '49,90').replace(',', '.'));
+        document.getElementById('chkPrice').innerText = `R$ ${produto.preco || '49,90'}`;
+        document.getElementById('valorSubtotal').innerText = `R$ ${produto.preco || '49,90'}`;
         
         document.getElementById('chkTitle').innerText = produto.nome;
         document.getElementById('chkImg').src = imgParam ? decodeURIComponent(imgParam) : produto.imagem;
@@ -532,25 +499,6 @@
             alert("Código PIX copiado!");
         }
 
-        // 6. Cronômetro até 23:59 (reseta diariamente)
-        const hrsEl = document.getElementById('timerHrs');
-        const minEl = document.getElementById('timerMin');
-        const secEl = document.getElementById('timerSec');
-        function updateCheckoutTimer() {
-            const now = new Date();
-            const endOfDay = new Date();
-            endOfDay.setHours(23, 59, 59, 999);
-            const diff = endOfDay - now;
-            if (diff <= 0) return;
-            const h = Math.floor(diff / (1000 * 60 * 60));
-            const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            const s = Math.floor((diff % (1000 * 60)) / 1000);
-            hrsEl.innerText = h.toString().padStart(2, '0');
-            minEl.innerText = m.toString().padStart(2, '0');
-            secEl.innerText = s.toString().padStart(2, '0');
-        }
-        updateCheckoutTimer();
-        setInterval(updateCheckoutTimer, 1000);
 
     </script>
 </body>

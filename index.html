@@ -1,267 +1,140 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elena Store - Queima de Estoque</title>
+    <title>Conjuntos Fitness - Elena Store</title>
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="pages.css">
 
     <!-- TikTok Pixel Code Start -->
     <script>
-        !function (w, d, t) {
-            w.TiktokAnalyticsObject = t; var ttq = w[t] = w[t] || []; ttq.methods = ["page", "track", "identify", "instances", "debug", "on", "off", "once", "ready", "alias", "group", "enableCookie", "disableCookie", "holdConsent", "revokeConsent", "grantConsent"], ttq.setAndDefer = function (t, e) { t[e] = function () { t.push([e].concat(Array.prototype.slice.call(arguments, 0))) } }; for (var i = 0; i < ttq.methods.length; i++)ttq.setAndDefer(ttq, ttq.methods[i]); ttq.instance = function (t) {
-                for (
-                    var e = ttq._i[t] || [], n = 0; n < ttq.methods.length; n++)ttq.setAndDefer(e, ttq.methods[n]); return e
-            }, ttq.load = function (e, n) {
-                var r = "https://analytics.tiktok.com/i18n/pixel/events.js", o = n && n.partner; ttq._i = ttq._i || {}, ttq._i[e] = [], ttq._i[e]._u = r, ttq._t = ttq._t || {}, ttq._t[e] = +new Date, ttq._o = ttq._o || {}, ttq._o[e] = n || {}; n = document.createElement("script")
-                    ; n.type = "text/javascript", n.async = !0, n.src = r + "?sdkid=" + e + "&lib=" + t; e = document.getElementsByTagName("script")[0]; e.parentNode.insertBefore(n, e)
-            };
+    !function (w, d, t) {
+      w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(
+      var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script")
+      ;n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
 
-            ttq.load('D470E4RC77U2P8MCJJR0');
-            ttq.page();
-        }(window, document, 'ttq');
+      ttq.load('D470E4RC77U2P8MCJJR0');
+      ttq.page();
+    }(window, document, 'ttq');
     </script>
     <!-- TikTok Pixel Code End -->
 </head>
-
 <body>
-    <!-- TELA DE CARREGAMENTO -->
-    <div class="loading-screen" id="loadingScreen">
-        <div class="loading-content">
-            <img src="images/logo.png" alt="Elena Store" class="loading-logo">
-            <div class="loading-spinner"></div>
-            <p class="loading-text">Carregando promoção<span class="loading-dots"></span></p>
-            <div class="loading-bar-wrapper">
-                <div class="loading-bar" id="loadingBar"></div>
-            </div>
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+    <div class="sidebar" id="sidebarMenu">
+        <div class="sidebar-header">
+            <span class="sidebar-title">Menu</span>
+            <button class="close-sidebar" onclick="closeSidebar()">✕</button>
         </div>
+        <ul class="sidebar-nav">
+            <li><a href="javascript:void(0)">✨ Novidades</a></li>
+            <li><a href="javascript:void(0)">💪 Conjuntos Fitness</a></li>
+            <li><a href="javascript:void(0)">🩳 Shorts</a></li>
+            <li><a href="javascript:void(0)">🔥 Conjuntos Fitness</a></li>
+            <li><a href="javascript:void(0)">🏋️ Acessórios</a></li>
+            <hr>
+            <li><a href="javascript:void(0)">👤 Minha Conta</a></li>
+            <li><a href="javascript:void(0)">📦 Meus Pedidos</a></li>
+            <li><a href="javascript:void(0)">📞 Atendimento</a></li>
+        </ul>
     </div>
 
-    <!-- CONTEÚDO PRINCIPAL -->
-    <div class="container" id="mainContent" style="display: none;">
-        <!-- Logo -->
-        <img src="images/logo.png" alt="Elena Store" class="logo">
-
-        <!-- Badge -->
-        <div class="badge">
-            <span class="dot"></span>
-            🔥 QUEIMA DE ESTOQUE — OFERTA DO DIA
+    <header>
+        <div class="black-banner">🔥 CONJUNTOS FITNESS — FRETE GRÁTIS PARA TODO O BRASIL</div>
+        <div class="top-nav" style="display:flex; justify-content:center; align-items:center; position: relative;">
+            <button onclick="openSidebar()" style="position: absolute; left: 15px; background:none; border:none; font-size:1.6rem; cursor:pointer; color:var(--text-dark); padding: 5px;">☰</button>
+            <img src="images/logo.png" alt="Elena Store" class="nav-logo" onerror="this.style.display='none'" style="max-height: 58px;">
         </div>
+    </header>
 
-        <!-- Headers -->
-        <h1 class="main-title">Queima de Estoque!</h1>
-        <p class="subtitle">Todo conjunto fitness por</p>
-        <h2 class="free-title" style="font-size: 2rem; color: #e60023; letter-spacing: 1px;">R$ 49,90</h2>
-        <p class="subtitle" style="font-size: 0.85rem; margin-top: 2px;">+ <b style="color: #00a85f;">PRIMEIRO FRETE GRÁTIS</b></p>
-
-        <!-- Timer Section -->
-        <div class="timer-section">
-            <p class="timer-label">PROMOÇÃO ACABA EM</p>
-            <div class="timer-display">
-                <div class="time-block" id="hours">00</div>
-                <span class="separator">:</span>
-                <div class="time-block" id="minutes">00</div>
-                <span class="separator">:</span>
-                <div class="time-block" id="seconds">00</div>
-            </div>
-            <p class="warning-text">⚠️ Promoção válida somente até 23:59 de hoje!</p>
+    <main>
+        <div class="collection-header" style="margin-bottom: 15px;">
+            <h1>Conjuntos Fitness</h1>
+            <p>27 conjuntos</p>
         </div>
+        
 
-        <!-- CTA -->
-        <button class="cta-button" onclick="window.location.href='colecao.html'">
-            APROVEITAR OFERTA <span class="arrow">→</span>
-        </button>
-        <p class="footer-text">Preço único R$ 49,90 qualquer conjunto. Corra, estoque limitado!</p>
-    </div>
+        <div class="product-grid" id="productGrid">
+            <!-- Os produtos serão injetados aqui via JavaScript -->
+        </div>
+    </main>
 
-    <!-- Fire Canvas -->
-    <canvas id="fireCanvas" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; display: none;"></canvas>
+    <footer>
+        <img src="images/logo.png" alt="Elena Store" class="footer-logo" onerror="this.style.display='none'">
+        <p class="footer-desc">Moda fitness feminina com performance e estilo. Peças exclusivas para mulheres que valorizam qualidade nos treinos.</p>
+        
+        <div class="footer-section">
+            <h3>CONTATO</h3>
+            <p>contato@elenastore.com.br</p>
+            <p>(11) 99876-5432</p>
+            <p>WhatsApp: (11) 99876-5432</p>
+            <p>Seg a Sex: 9h às 18h</p>
+        </div>
+        
+        <div class="footer-section">
+            <h3>ENDEREÇO</h3>
+            <p>Rua Augusta, 1.247 — Loja 12</p>
+            <p>Consolação, São Paulo — SP</p>
+            <p>CEP: 01305-100</p>
+            <p>Brasil</p>
+        </div>
+        
+        <div class="footer-section">
+            <h3>POLÍTICAS</h3>
+            <a href="#">Política de Privacidade</a>
+            <a href="#">Termos de Uso</a>
+            <a href="#">Política de Trocas</a>
+            <a href="#">Política de Envio</a>
+        </div>
+    </footer>
 
-    <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="produtos.js"></script>
     <script>
-        // Loading Screen Logic (5 seconds)
-        document.addEventListener('DOMContentLoaded', () => {
-            const loadingBar = document.getElementById('loadingBar');
-            const loadingScreen = document.getElementById('loadingScreen');
-            const mainContent = document.getElementById('mainContent');
-            const fireCanvas = document.getElementById('fireCanvas');
-
-            // Animate loading bar over 5 seconds
-            let progress = 0;
-            const loadInterval = setInterval(() => {
-                progress += 2;
-                loadingBar.style.width = progress + '%';
-                if (progress >= 100) {
-                    clearInterval(loadInterval);
-                }
-            }, 100);
-
-            setTimeout(() => {
-                loadingScreen.style.opacity = '0';
-                loadingScreen.style.transform = 'scale(1.05)';
-                setTimeout(() => {
-                    loadingScreen.style.display = 'none';
-                    mainContent.style.display = 'flex';
-                    mainContent.style.animation = 'fadeInPage 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards';
-                    
-                    // 🎉 Confetti burst (fire-themed colors!)
-                    const fireColors = ['#e60023', '#ff4500', '#ff6b35', '#ffa500', '#ffd700', '#ffec00'];
-                    
-                    // Big initial burst
-                    confetti({
-                        particleCount: 150,
-                        spread: 90,
-                        origin: { y: 0.6 },
-                        colors: fireColors
-                    });
-                    
-                    // Continuous confetti for 4 seconds
-                    const duration = 4000;
-                    const animEnd = Date.now() + duration;
-                    const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 10 };
-
-                    function randomInRange(min, max) {
-                        return Math.random() * (max - min) + min;
-                    }
-
-                    const confettiInterval = setInterval(() => {
-                        const timeLeft = animEnd - Date.now();
-                        if (timeLeft <= 0) return clearInterval(confettiInterval);
-
-                        const particleCount = 40 * (timeLeft / duration);
-                        confetti(Object.assign({}, defaults, {
-                            particleCount,
-                            origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 },
-                            colors: fireColors
-                        }));
-                        confetti(Object.assign({}, defaults, {
-                            particleCount,
-                            origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
-                            colors: fireColors
-                        }));
-                    }, 250);
-
-                    // 🔥 Fire particle effect
-                    fireCanvas.style.display = 'block';
-                    startFireEffect();
-                }, 400);
-            }, 5000);
-
-            // 🔥 FIRE PARTICLE EFFECT
-            function startFireEffect() {
-                const canvas = fireCanvas;
-                const ctx = canvas.getContext('2d');
-                canvas.width = window.innerWidth;
-                canvas.height = window.innerHeight;
-
-                window.addEventListener('resize', () => {
-                    canvas.width = window.innerWidth;
-                    canvas.height = window.innerHeight;
-                });
-
-                const particles = [];
-                const maxParticles = 60;
-
-                class FireParticle {
-                    constructor() {
-                        this.reset();
-                    }
-                    reset() {
-                        this.x = Math.random() * canvas.width;
-                        this.y = canvas.height + 10;
-                        this.size = Math.random() * 4 + 2;
-                        this.speedY = Math.random() * 2 + 0.5;
-                        this.speedX = (Math.random() - 0.5) * 1;
-                        this.opacity = Math.random() * 0.5 + 0.3;
-                        this.life = 0;
-                        this.maxLife = Math.random() * 120 + 60;
-                        const colors = [
-                            [230, 0, 35],    // red
-                            [255, 69, 0],    // orange-red
-                            [255, 107, 53],  // orange
-                            [255, 165, 0],   // orange
-                            [255, 215, 0],   // gold
-                            [255, 236, 0],   // yellow
-                        ];
-                        this.color = colors[Math.floor(Math.random() * colors.length)];
-                    }
-                    update() {
-                        this.y -= this.speedY;
-                        this.x += this.speedX + Math.sin(this.life * 0.05) * 0.3;
-                        this.life++;
-                        this.opacity = (1 - this.life / this.maxLife) * 0.5;
-                        this.size *= 0.998;
-                        if (this.life >= this.maxLife || this.opacity <= 0) {
-                            this.reset();
-                        }
-                    }
-                    draw() {
-                        ctx.beginPath();
-                        const gradient = ctx.createRadialGradient(
-                            this.x, this.y, 0,
-                            this.x, this.y, this.size * 2
-                        );
-                        gradient.addColorStop(0, `rgba(${this.color[0]}, ${this.color[1]}, ${this.color[2]}, ${this.opacity})`);
-                        gradient.addColorStop(1, `rgba(${this.color[0]}, ${this.color[1]}, ${this.color[2]}, 0)`);
-                        ctx.fillStyle = gradient;
-                        ctx.arc(this.x, this.y, this.size * 2, 0, Math.PI * 2);
-                        ctx.fill();
-                    }
-                }
-
-                for (let i = 0; i < maxParticles; i++) {
-                    const p = new FireParticle();
-                    p.y = Math.random() * canvas.height;
-                    p.life = Math.random() * p.maxLife;
-                    particles.push(p);
-                }
-
-                function animate() {
-                    ctx.clearRect(0, 0, canvas.width, canvas.height);
-                    particles.forEach(p => {
-                        p.update();
-                        p.draw();
-                    });
-                    requestAnimationFrame(animate);
-                }
-                animate();
-            }
-
-            // Countdown Timer until 23:59 (resets daily)
-            function updateCountdown() {
-                const now = new Date();
-                const endOfDay = new Date();
-                endOfDay.setHours(23, 59, 59, 999);
-
-                const diff = endOfDay - now;
-                if (diff <= 0) {
-                    document.getElementById('hours').textContent = '00';
-                    document.getElementById('minutes').textContent = '00';
-                    document.getElementById('seconds').textContent = '00';
-                    return;
-                }
-
-                const hours = Math.floor(diff / (1000 * 60 * 60));
-                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
-                document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
-                document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
-                document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
-            }
-
-            updateCountdown();
-            setInterval(updateCountdown, 1000);
+        const grid = document.getElementById('productGrid');
+        produtos.forEach(p => {
+            const badgeHtml = p.badge ? `<div class="badge">${p.badge}</div>` : '';
+            grid.innerHTML += `
+                <a href="produto.html?id=${p.id}" class="product-card">
+                    <div class="product-img-wrapper">
+                        ${badgeHtml}
+                        <img src="${p.imagem}" alt="${p.nome}" class="product-img" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h2 class="product-name">${p.nome}</h2>
+                        <div class="price-line">
+                            <span class="price-free" style="color: #00a85f; font-weight: 800;">R$ ${p.preco}</span>
+                            <span class="price-old">R$ ${p.precoOriginal}</span>
+                        </div>
+                        <div class="stars">
+                            ★★★★★ <span>4.9</span>
+                        </div>
+                    </div>
+                </a>
+            `;
         });
+
+        // Sidebar Functions
+        function openSidebar() {
+            document.getElementById('sidebarMenu').classList.add('active');
+            document.getElementById('sidebarOverlay').classList.add('active');
+        }
+        function closeSidebar() {
+            document.getElementById('sidebarMenu').classList.remove('active');
+            document.getElementById('sidebarOverlay').classList.remove('active');
+        }
+
+        // TikTok Event: ViewContent (Coleção)
+        if(typeof ttq !== 'undefined') {
+            ttq.track('ViewContent', {
+                content_type: 'product_group',
+                content_id: 'conjuntos_fitness',
+                content_name: 'Conjuntos Fitness Elena Store'
+            });
+        }
     </script>
 </body>
-
 </html>
