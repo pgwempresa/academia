@@ -3,27 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Conjuntos Fitness - Elena Store</title>
+    <title>Conjuntos Fitness — Elena Store</title>
+    <meta name="description" content="Coleção de conjuntos fitness femininos. Tecidos premium, design exclusivo e qualidade que você sente. Compre com frete grátis.">
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="pages.css">
 
-    <!-- TikTok Pixel Code Start -->
+    <!-- Meta Pixel Code -->
     <script>
-    !function (w, d, t) {
-      w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(
-      var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script")
-      ;n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
-
-      ttq.load('D470E4RC77U2P8MCJJR0');
-      ttq.page();
-    }(window, document, 'ttq');
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init','1255725740021923');
+    fbq('track','PageView');
     </script>
-    <!-- TikTok Pixel Code End -->
+    <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1255725740021923&ev=PageView&noscript=1"/></noscript>
+    <!-- End Meta Pixel Code -->
 </head>
 <body>
+
+    <!-- ═══ SIDEBAR OVERLAY ═══════════════════════════════ -->
     <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
     <div class="sidebar" id="sidebarMenu">
         <div class="sidebar-header">
@@ -34,7 +38,7 @@
             <li><a href="javascript:void(0)">✨ Novidades</a></li>
             <li><a href="javascript:void(0)">💪 Conjuntos Fitness</a></li>
             <li><a href="javascript:void(0)">🩳 Shorts</a></li>
-            <li><a href="javascript:void(0)">🔥 Conjuntos Fitness</a></li>
+            <li><a href="javascript:void(0)">🔥 Promoções</a></li>
             <li><a href="javascript:void(0)">🏋️ Acessórios</a></li>
             <hr>
             <li><a href="javascript:void(0)">👤 Minha Conta</a></li>
@@ -43,62 +47,211 @@
         </ul>
     </div>
 
+    <!-- ═══ FILTER MODAL (mobile) ════════════════════════ -->
+    <div class="filter-modal-overlay" id="filterModalOverlay" onclick="closeFilterModal()">
+        <div class="filter-modal" onclick="event.stopPropagation()">
+            <div class="filter-modal-handle"></div>
+            <div class="filter-modal-title">Filtro e ordem</div>
+
+            <div class="filter-toggle-row">
+                <span>Apenas em estoque</span>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="stockOnlyMobile">
+                    <span class="toggle-track"></span>
+                </label>
+            </div>
+
+            <div style="margin-bottom:20px; padding-bottom:20px; border-bottom:1px solid #eee;">
+                <div style="font-size:.85rem;color:#1c1c1c;font-weight:500;margin-bottom:12px;">Ordenar por</div>
+                <select class="sort-select" style="width:100%;padding:10px 14px;" onchange="sortProducts(this.value)" id="sortMobile">
+                    <option value="default">Em destaque</option>
+                    <option value="priceAsc">Menor preço</option>
+                    <option value="priceDesc">Maior preço</option>
+                    <option value="nameAsc">A → Z</option>
+                </select>
+            </div>
+
+            <button class="filter-modal-close" onclick="closeFilterModal()">Aplicar filtros</button>
+        </div>
+    </div>
+
+    <!-- ═══ HEADER ════════════════════════════════════════ -->
     <header>
-        <div class="black-banner">Queima de Estoque: Moda Fitness por R$39,90</div>
-        <div class="top-nav" style="display:flex; justify-content:center; align-items:center; position: relative;">
-            <button onclick="openSidebar()" style="position: absolute; left: 15px; background:none; border:none; font-size:1.6rem; cursor:pointer; color:var(--text-dark); padding: 5px;">☰</button>
-            <img src="images/logo.png" alt="Elena Store" class="nav-logo" onerror="this.style.display='none'" style="max-height: 58px;">
+        <div class="black-banner">Parcele em até 12x • Frete grátis em todo o Brasil</div>
+        <div class="top-nav">
+            <button id="hamburgerBtn" onclick="openSidebar()" aria-label="Menu" style="position:absolute;left:20px;background:none;border:none;font-size:1.5rem;cursor:pointer;color:#1c1c1c;padding:4px;line-height:1;">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+                    <line x1="3" y1="6" x2="21" y2="6"/>
+                    <line x1="3" y1="12" x2="21" y2="12"/>
+                    <line x1="3" y1="18" x2="21" y2="18"/>
+                </svg>
+            </button>
+            <img src="images/logo.png" alt="Elena Store" class="nav-logo" onerror="this.style.display='none'">
+            <div class="nav-icons">
+                <a href="javascript:void(0)" aria-label="Buscar">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                    </svg>
+                </a>
+                <a href="javascript:void(0)" aria-label="Sacola">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+                        <line x1="3" y1="6" x2="21" y2="6"/>
+                        <path d="M16 10a4 4 0 01-8 0"/>
+                    </svg>
+                </a>
+            </div>
         </div>
     </header>
 
+    <!-- ═══ MAIN ══════════════════════════════════════════ -->
     <main>
-        <div class="collection-header" style="margin-bottom: 15px;">
-            <h1>Conjuntos Fitness</h1>
-            <p>27 conjuntos</p>
+        <!-- Collection Header -->
+        <div class="collection-header">
+            <h1>Fitness</h1>
+            <span class="collection-count" id="productCount">27 produtos</span>
         </div>
-        
 
-        <div class="product-grid" id="productGrid">
-            <!-- Os produtos serão injetados aqui via JavaScript -->
+        <!-- Layout: Sidebar + Grid -->
+        <div class="collection-layout">
+
+            <!-- FILTER SIDEBAR (desktop only) -->
+            <aside class="filter-sidebar">
+                <div class="filter-sidebar-title">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="4" y1="6" x2="20" y2="6"/>
+                        <line x1="8" y1="12" x2="16" y2="12"/>
+                        <line x1="11" y1="18" x2="13" y2="18"/>
+                    </svg>
+                    Filtros
+                </div>
+
+                <div class="filter-section">
+                    <div class="filter-toggle-row">
+                        <span>Apenas em estoque</span>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="stockOnlyDesktop">
+                            <span class="toggle-track"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="filter-section">
+                    <div class="filter-section-header">
+                        <span>Preço</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"/>
+                        </svg>
+                    </div>
+                    <div style="font-size:.78rem;color:#aaa;font-family:'Inter',sans-serif;">R$ 39,90 — R$ 259,90</div>
+                </div>
+
+                <div class="filter-section">
+                    <div class="filter-section-header">
+                        <span>Ordenar</span>
+                    </div>
+                    <select class="sort-select" style="width:100%;padding:8px 12px;font-size:.8rem;" onchange="sortProducts(this.value)" id="sortDesktop">
+                        <option value="default">Em destaque</option>
+                        <option value="priceAsc">Menor preço</option>
+                        <option value="priceDesc">Maior preço</option>
+                        <option value="nameAsc">A → Z</option>
+                    </select>
+                </div>
+            </aside>
+
+            <!-- PRODUCT GRID AREA -->
+            <div class="grid-area">
+                <div class="product-grid" id="productGrid">
+                    <!-- Produtos injetados via JS -->
+                </div>
+            </div>
         </div>
     </main>
 
+    <!-- ═══ FLOATING FILTER BUTTON (mobile) ══════════════ -->
+    <button class="floating-filter-btn" id="floatingFilterBtn" onclick="openFilterModal()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <line x1="4" y1="6" x2="20" y2="6"/>
+            <line x1="8" y1="12" x2="16" y2="12"/>
+            <line x1="11" y1="18" x2="13" y2="18"/>
+        </svg>
+        Filtro e ordem
+    </button>
+
+    <!-- ═══ VALUE BAR ═════════════════════════════════════ -->
+    <div class="value-bar">
+        <div class="value-item">
+            <div class="value-icon">🚚</div>
+            <div class="value-label">Frete Grátis para todo o Brasil</div>
+        </div>
+        <div class="value-item">
+            <div class="value-icon">🔒</div>
+            <div class="value-label">Compra 100% segura e protegida</div>
+        </div>
+        <div class="value-item">
+            <div class="value-icon">↩️</div>
+            <div class="value-label">Troca fácil em até 30 dias</div>
+        </div>
+        <div class="value-item">
+            <div class="value-icon">💬</div>
+            <div class="value-label">Atendimento dedicado</div>
+        </div>
+    </div>
+
+    <!-- ═══ FOOTER ════════════════════════════════════════ -->
     <footer>
         <img src="images/logo.png" alt="Elena Store" class="footer-logo" onerror="this.style.display='none'">
         <p class="footer-desc">Moda fitness feminina com performance e estilo. Peças exclusivas para mulheres que valorizam qualidade nos treinos.</p>
-        
+
         <div class="footer-section">
-            <h3>CONTATO</h3>
-            <p>contato@elenastore.com.br</p>
-            <p>(11) 99876-5432</p>
-            <p>WhatsApp: (11) 99876-5432</p>
+            <h3>Contato</h3>
             <p>Seg a Sex: 9h às 18h</p>
         </div>
-        
+
         <div class="footer-section">
-            <h3>ENDEREÇO</h3>
-            <p>Rua Augusta, 1.247 — Loja 12</p>
-            <p>Consolação, São Paulo — SP</p>
-            <p>CEP: 01305-100</p>
-            <p>Brasil</p>
-        </div>
-        
-        <div class="footer-section">
-            <h3>POLÍTICAS</h3>
+            <h3>Políticas</h3>
             <a href="#">Política de Privacidade</a>
             <a href="#">Termos de Uso</a>
             <a href="#">Política de Trocas</a>
             <a href="#">Política de Envio</a>
         </div>
+
+        <div class="footer-bottom">
+            © 2025 Elena Store. Todos os direitos reservados.
+        </div>
     </footer>
 
+    <!-- ═══ SCRIPTS ═══════════════════════════════════════ -->
     <script src="produtos.js"></script>
     <script>
-        const grid = document.getElementById('productGrid');
-        produtos.forEach(p => {
-            const badgeHtml = p.badge ? `<div class="badge">${p.badge}</div>` : '';
-            grid.innerHTML += `
-                <a href="produto.html?id=${p.id}" class="product-card">
+        // ── Utility: calcular % de desconto ──────────────────
+        function calcDiscount(precoOriginal, preco) {
+            const orig = parseFloat(precoOriginal.replace(',', '.'));
+            const curr = parseFloat(preco.replace(',', '.'));
+            if (!orig || !curr) return null;
+            return Math.round((1 - curr / orig) * 100);
+        }
+
+        // ── Render dos cards ──────────────────────────────────
+        function renderProducts(list) {
+            const grid = document.getElementById('productGrid');
+            grid.innerHTML = '';
+            document.getElementById('productCount').textContent = list.length + ' produtos';
+
+            list.forEach((p, i) => {
+                const disc = calcDiscount(p.precoOriginal, p.preco);
+                const badgeHtml = disc
+                    ? `<div class="badge">${disc}%</div>`
+                    : (p.badge ? `<div class="badge" style="background:#fff3e0;color:#e65100;">${p.badge}</div>` : '');
+
+                const precoNum = parseFloat(p.preco.replace(',', '.'));
+                const parcela = (precoNum / 12).toFixed(2).replace('.', ',');
+
+                const card = document.createElement('a');
+                card.href = p.id === 28 ? 'products/conjunto-ava/' : `produto.html?id=${p.id}`;
+                card.className = 'product-card';
+                card.style.animationDelay = (i * 0.04) + 's';
+                card.innerHTML = `
                     <div class="product-img-wrapper">
                         ${badgeHtml}
                         <img src="${p.imagem}" alt="${p.nome}" class="product-img" loading="lazy">
@@ -106,18 +259,38 @@
                     <div class="product-info">
                         <h2 class="product-name">${p.nome}</h2>
                         <div class="price-line">
-                            <span class="price-free" style="color: #00a85f; font-weight: 800;">R$ ${p.preco}</span>
+                            <span class="price-free">R$ ${p.preco}</span>
                             <span class="price-old">R$ ${p.precoOriginal}</span>
                         </div>
-                        <div class="stars">
-                            ★★★★★ <span>4.9</span>
-                        </div>
+                        <div class="price-installment">até 12x de R$ ${parcela}</div>
+                        <div class="price-frete">Frete Grátis</div>
                     </div>
-                </a>
-            `;
-        });
+                `;
+                grid.appendChild(card);
+            });
+        }
 
-        // Sidebar Functions
+        // ── Sort ─────────────────────────────────────────────
+        let currentProducts = [...produtos];
+
+        function sortProducts(mode) {
+            // Sync both selects
+            document.getElementById('sortDesktop').value = mode;
+            document.getElementById('sortMobile').value = mode;
+
+            const arr = [...produtos];
+            if (mode === 'priceAsc') {
+                arr.sort((a,b) => parseFloat(a.preco.replace(',','.')) - parseFloat(b.preco.replace(',','.')));
+            } else if (mode === 'priceDesc') {
+                arr.sort((a,b) => parseFloat(b.preco.replace(',','.')) - parseFloat(a.preco.replace(',','.')));
+            } else if (mode === 'nameAsc') {
+                arr.sort((a,b) => a.nome.localeCompare(b.nome));
+            }
+            currentProducts = arr;
+            renderProducts(arr);
+        }
+
+        // ── Sidebar ───────────────────────────────────────────
         function openSidebar() {
             document.getElementById('sidebarMenu').classList.add('active');
             document.getElementById('sidebarOverlay').classList.add('active');
@@ -127,14 +300,39 @@
             document.getElementById('sidebarOverlay').classList.remove('active');
         }
 
-        // TikTok Event: ViewContent (Coleção)
-        if(typeof ttq !== 'undefined') {
-            ttq.track('ViewContent', {
-                content_type: 'product_group',
-                content_id: 'conjuntos_fitness',
-                content_name: 'Conjuntos Fitness Elena Store'
-            });
+        // ── Filter Modal (mobile) ─────────────────────────────
+        function openFilterModal() {
+            document.getElementById('filterModalOverlay').classList.add('active');
         }
+        function closeFilterModal() {
+            document.getElementById('filterModalOverlay').classList.remove('active');
+        }
+
+        // ── Hide floating btn on scroll up, show on scroll down
+        let lastScroll = 0;
+        const floatingBtn = document.getElementById('floatingFilterBtn');
+        window.addEventListener('scroll', () => {
+            const current = window.scrollY;
+            if (current < 100) {
+                floatingBtn.style.opacity = '1';
+                floatingBtn.style.pointerEvents = 'auto';
+                return;
+            }
+            if (current > lastScroll) {
+                floatingBtn.style.opacity = '0';
+                floatingBtn.style.pointerEvents = 'none';
+            } else {
+                floatingBtn.style.opacity = '1';
+                floatingBtn.style.pointerEvents = 'auto';
+            }
+            lastScroll = current;
+        }, { passive: true });
+
+        // ── Init ──────────────────────────────────────────────
+        renderProducts(produtos);
+
+        // Floating btn transition
+        floatingBtn.style.transition = 'opacity 0.3s ease, transform 0.25s ease, box-shadow 0.25s ease';
     </script>
 </body>
 </html>

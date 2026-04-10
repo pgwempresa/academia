@@ -7,18 +7,18 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="checkout.css">
 
-    <!-- TikTok Pixel Code Start -->
+    <!-- Meta Pixel Code -->
     <script>
-    !function (w, d, t) {
-      w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(
-      var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script")
-      ;n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
-
-      ttq.load('D470E4RC77U2P8MCJJR0');
-      ttq.page();
-    }(window, document, 'ttq');
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init','1255725740021923');
+    fbq('track','PageView');
     </script>
-    <!-- TikTok Pixel Code End -->
+    <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1255725740021923&ev=PageView&noscript=1"/></noscript>
+    <!-- End Meta Pixel Code -->
 </head>
 <body>
 
@@ -91,13 +91,9 @@
         <div class="card">
             <div class="card-header"><span class="step">2</span> Resumo do Pedido</div>
             
-            <div class="summary-item">
-                <img src="" id="chkImg" class="summary-img" alt="Produto" onerror="this.src='images/giftbox.png'">
-                <div class="summary-details">
-                    <div class="summary-title" id="chkTitle">Carregando produto...</div>
-                    <div id="chkOptions" style="font-size: 0.8rem; color: #666; margin-bottom: 6px; font-weight: 500;"></div>
-                    <div class="summary-price" id="chkPrice" style="color: #00a85f; font-weight: 800;">R$ --,--</div>
-                </div>
+            <!-- Summary items (single or kit) -->
+            <div id="summaryItems">
+                <!-- injected by JS -->
             </div>
 
             <!-- Frete Options -->
@@ -131,7 +127,7 @@
             <!-- Totais -->
             <div style="margin-top: 20px;">
                 <div class="totals-row">
-                    <span>Subtotal (1 conjunto)</span>
+                    <span id="subtotalLabel">Subtotal (1 conjunto)</span>
                     <span id="valorSubtotal">R$ --,--</span>
                 </div>
                 <div class="totals-row">
@@ -208,10 +204,7 @@
         <!-- Informações de Contato e Credibilidade (Rodapé Padrão) -->
         <div style="text-align: center; margin-top: 30px; margin-bottom: 20px; font-size: 0.75rem; color: #888; line-height: 1.6;">
             <strong>Elena Store</strong><br>
-            CNPJ: 14.333.222/0001-99<br>
-            contato@elenastore.com.br — WhatsApp: (11) 99876-5432<br>
-            Atendimento: Segunda a Sexta, das 9h às 18h<br>
-            São Paulo, SP
+            Atendimento: Segunda a Sexta, das 9h às 18h
         </div>
 
     </form>
@@ -220,28 +213,52 @@
     <script>
         // 1. Carregar Dados Dinâmicos do Produto
         const urlParams = new URLSearchParams(window.location.search);
-        const prodId = parseInt(urlParams.get('id')) || 1;
-        const sizeParam = urlParams.get('size');
+        const prodId    = parseInt(urlParams.get('id')) || 1;
+        const sizeParam  = urlParams.get('size');
         const colorParam = urlParams.get('color');
-        const imgParam = urlParams.get('img');
+        const imgParam   = urlParams.get('img');
+        const isKit      = urlParams.get('kit') === '1';
+        const kitDataRaw = urlParams.get('kitData');
         
-        const produto = typeof produtos !== 'undefined' ? (produtos.find(p => p.id === prodId) || produtos[0]) : { nome: "Conjunto Fitness", imagem: "images/giftbox.png" };
-        const PRODUCT_PRICE = parseFloat((produto.preco || '49,90').replace(',', '.'));
-        document.getElementById('chkPrice').innerText = `R$ ${produto.preco || '49,90'}`;
-        document.getElementById('valorSubtotal').innerText = `R$ ${produto.preco || '49,90'}`;
-        
-        document.getElementById('chkTitle').innerText = produto.nome;
-        document.getElementById('chkImg').src = imgParam ? decodeURIComponent(imgParam) : produto.imagem;
+        const produto = typeof produtos !== 'undefined'
+            ? (produtos.find(p => p.id === prodId) || produtos[0])
+            : { nome: 'Conjunto Fitness', imagem: 'images/giftbox.png', preco: '39,90' };
 
-        let optionsList = [];
-        if (sizeParam) optionsList.push(`Tamanho: ${sizeParam}`);
-        if (colorParam) optionsList.push(`Cor: ${colorParam}`);
-        
-        if (optionsList.length > 0) {
-            document.getElementById('chkOptions').innerText = optionsList.join(' | ');
+        const SINGLE_PRICE = parseFloat((produto.preco || '39,90').replace(',', '.'));
+        const KIT_PRICE    = Math.round(SINGLE_PRICE * 2.0 * 100) / 100; // kit 3x with discount
+        const PRODUCT_PRICE = isKit ? KIT_PRICE : SINGLE_PRICE;
+
+        // Render summary items
+        const summaryEl = document.getElementById('summaryItems');
+        if (isKit && kitDataRaw) {
+            let kitItems = [];
+            try { kitItems = JSON.parse(decodeURIComponent(kitDataRaw)); } catch(e) {}
+            summaryEl.innerHTML = kitItems.map((item, i) => `
+                <div class="summary-item" style="border-bottom: 1px solid #f5f5f5; padding-bottom: 14px; margin-bottom: 14px;">
+                    <img src="${item.img || produto.imagem}" class="summary-img" alt="Conjunto ${i+1}" onerror="this.src='images/giftbox.png'" style="width:60px;height:60px;object-fit:cover;border-radius:8px;flex-shrink:0;">
+                    <div class="summary-details">
+                        <div class="summary-title">Conjunto ${i+1} — ${produto.nome.replace(/\s+(Branco|Preto|Rosa|Azul|Verde|Roxo|Marrom|Vinho|Laranja|Vermelho|Amarelo|Marinho)$/i,'')}</div>
+                        <div style="font-size:.78rem;color:#888;margin-bottom:4px;">Cor: ${item.color} · Tam: ${item.size}</div>
+                    </div>
+                </div>
+            `).join('');
+            summaryEl.innerHTML += `<div style="font-size:.8rem;color:#1e7a4a;font-weight:600;text-align:right;background:#e3f5ec;padding:8px 12px;border-radius:8px;">🎁 Kit 3 conjuntos</div>`;
+            document.getElementById('subtotalLabel').innerText = 'Subtotal (Kit 3 conjuntos)';
         } else {
-            document.getElementById('chkOptions').style.display = 'none';
+            const displayImg = imgParam ? decodeURIComponent(imgParam) : produto.imagem;
+            summaryEl.innerHTML = `
+                <div class="summary-item">
+                    <img src="${displayImg}" class="summary-img" alt="Produto" onerror="this.src='images/giftbox.png'">
+                    <div class="summary-details">
+                        <div class="summary-title">${produto.nome}</div>
+                        <div style="font-size:.78rem;color:#888;margin-bottom:4px;">${[sizeParam ? 'Tam: '+sizeParam : '', colorParam ? 'Cor: '+colorParam : ''].filter(Boolean).join(' · ')}</div>
+                        <div class="summary-price" style="color:#1e7a4a;font-weight:800;">R$ ${produto.preco}</div>
+                    </div>
+                </div>
+            `;
         }
+
+        document.getElementById('valorSubtotal').innerText = `R$ ${PRODUCT_PRICE.toFixed(2).replace('.', ',')}`;
 
         // Variável de controle do frete
         let freteVal = 0; // Primeiro frete grátis
@@ -382,17 +399,18 @@
             const payload = {
                 amount: totalAmountCents,
                 currency: "BRL",
-                paymentMethod: "PIX",
+                paymentMethod: "pix",
                 customer: {
                     name: document.getElementById('chkNome').value,
                     email: document.getElementById('chkEmail').value,
                     document: {
                         number: document.getElementById('chkCpf').value.replace(/\D/g, ''),
-                        type: "CPF"
+                        type: "cpf"
                     },
                     phone: document.getElementById('chkTelefone').value.replace(/\D/g, ''),
                     address: {
                         street: document.getElementById('chkRua').value,
+                        streetNumber: document.getElementById('chkNumero').value,
                         zipCode: document.getElementById('chkCep').value.replace(/\D/g, ''),
                         neighborhood: document.getElementById('chkBairro').value,
                         city: document.getElementById('chkCidade').value,
@@ -404,6 +422,7 @@
                     fee: freteAmountCents,
                     address: {
                         street: document.getElementById('chkRua').value,
+                        streetNumber: document.getElementById('chkNumero').value,
                         zipCode: document.getElementById('chkCep').value.replace(/\D/g, ''),
                         neighborhood: document.getElementById('chkBairro').value,
                         city: document.getElementById('chkCidade').value,
@@ -434,28 +453,11 @@
                 });
                 
                 const data = await response.json();
-                const transaction = data.transaction || data.data || data.result || data;
-                const transactionId = data.id || transaction.id;
-                const qrCode =
-                    data.qrCode ||
-                    transaction.qrCode ||
-                    transaction.pix?.qrCode ||
-                    data.pix?.qrCode ||
-                    transaction.pixCode ||
-                    data.pixCode ||
-                    transaction.copyPaste ||
-                    data.copyPaste ||
-                    "";
-                const qrImg =
-                    data.qrCodeBase64 ||
-                    transaction.qrCodeBase64 ||
-                    transaction.pix?.qrCodeBase64 ||
-                    data.pix?.qrCodeBase64 ||
-                    transaction.qrImage ||
-                    data.qrImage ||
-                    transaction.encodedImage ||
-                    data.encodedImage ||
-                    "";
+                
+                // O novo handler retorna id e qrCode no nível raiz
+                const transactionId = data.id;
+                const qrCode = data.qrCode;
+                const qrImg = data.qrCodeBase64;
                 
                 if (response.ok && transactionId) {
                     // TikTok Event: CompletePayment (PIX Gerado)
@@ -478,16 +480,17 @@
                     }));
                     window.location.href = "pix.html";
                 } else {
-                    alert("Erro ao gerar transação: " + (data.message || JSON.stringify(data)));
+                    alert("Erro ao gerar transação Velana: " + (data.message || JSON.stringify(data)));
                     btn.disabled = false;
                     btn.innerHTML = "⚡ GERAR CÓDIGO PIX";
                 }
             } catch (err) {
                 console.error(err);
-                alert("Erro de conexão ao gerar o PIX.");
+                alert("Erro de conexão ao gerar o PIX na Velana.");
                 btn.disabled = false;
                 btn.innerHTML = "⚡ GERAR CÓDIGO PIX";
             }
+
         });
 
         // 5. Função de copiar o PIX

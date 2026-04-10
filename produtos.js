@@ -1,59 +1,19 @@
 const produtos = [
-    // ==================== CONJUNTO AVA (QUEIMA DE ESTOQUE) ====================
+    // ==================== CONJUNTO AVA (PRODUTO ÚNICO COM VARIANTES DE COR) ====================
     {
-        id: 28, nome: "Conjunto Fitness Ava Amarelo", precoOriginal: "199,90", preco: '39,90', badge: "NOVO",
-        descricao: "O Conjunto Ava Amarelo traz luminosidade e energia para o seu treino. Com tecido de alta elasticidade e toque macio, garante conforto absoluto e um visual vibrante na academia.",
+        id: 28, nome: "Conjunto Fitness Ava", precoOriginal: "199,90", preco: '39,90', badge: "QUERIDINHO",
+        descricao: "O Conjunto Ava foi projetado para mulheres que buscam elegância e performance. Com tecido de alta elasticidade, toque macio e cintura alta compressiva, garante conforto absoluto e um visual poderoso na academia. Disponível em 7 cores incríveis.",
         caracteristicas: ["Tecido ultra-elástico", "Cintura alta compressiva", "Toque gelado e respirável", "Proteção UV 50+"],
-        imagem: "images/AnyConv.com__conjuntoavaamarelo.webp",
-        variantes: []
-    },
-    {
-        id: 29, nome: "Conjunto Fitness Ava Azul", precoOriginal: "199,90", preco: '39,90', badge: "",
-        descricao: "O Conjunto Ava Azul é perfeito para quem busca serenidade e foco. A tonalidade azul profunda transmite confiança, enquanto a modelagem anatômica valoriza suas curvas com sustentação.",
-        caracteristicas: ["Modelagem anatômica", "Tecido dry-fit premium", "Cós largo anatômico", "Secagem rápida"],
-        imagem: "images/AnyConv.com__conjuntoavaazul.webp",
-        variantes: []
-    },
-    {
-        id: 30, nome: "Conjunto Fitness Ava Branco", precoOriginal: "209,90", preco: '39,90', badge: "LANÇAMENTO",
-        descricao: "O Conjunto Ava Branco é o auge da sofisticação. Com tecido de gramatura superior que garante zero transparência, é a peça ideal para um look fitness clean e luxuoso.",
-        caracteristicas: ["Gramatura superior (zero transparência)", "Design minimalista premium", "Toque aveludado", "Compressão estratégica"],
-        imagem: "images/AnyConv.com__conjuntoavabranco.webp",
-        variantes: [
-            { cor: "Frente", img: "images/AnyConv.com__conjuntoavabranco2.webp" },
-            { cor: "Verso", img: "images/AnyConv.com__conjuntoavabranco3.webp" },
-            { cor: "Detalhe", img: "images/AnyConv.com__conjuntoavabranco4.webp" }
-        ]
-    },
-    {
-        id: 31, nome: "Conjunto Fitness Ava Marrom", precoOriginal: "199,90", preco: '39,90', badge: "",
-        descricao: "A elegância dos tons terrosos no Conjunto Ava Marrom. Uma peça versátil que combina tecnologia fitness com a cor mais desejada da temporada.",
-        caracteristicas: ["Tom terroso em tendência", "Tecido com controle de umidade", "Ajuste firme e confortável", "Costuras reforçadas"],
-        imagem: "images/AnyConv.com__conjuntoavamarrom.webp",
-        variantes: []
-    },
-    {
-        id: 32, nome: "Conjunto Fitness Ava Preto", precoOriginal: "199,90", preco: '39,90', badge: "ESSENCIAL",
-        descricao: "O Conjunto Ava Preto é o seu melhor aliado em qualquer treino. Poderoso, discreto e extremamente confortável, é a peça base que toda mulher precisa ter.",
-        caracteristicas: ["Preto profundo (não desbota)", "Alta compressão modeladora", "Cós alto que não desce", "Durabilidade excepcional"],
-        imagem: "images/AnyConv.com__conjuntoavapreto.webp",
-        variantes: []
-    },
-    {
-        id: 33, nome: "Conjunto Fitness Ava Rosa", precoOriginal: "199,90", preco: '39,90', badge: "QUERIDINHO",
-        descricao: "Feminilidade e performance se unem no Conjunto Ava Rosa. Um tom de rosa equilibrado que traz estilo para o seu treino com toda a liberdade de movimento que você merece.",
-        caracteristicas: ["Cor vibrante e feminina", "Tecido respirável", "Elasticidade 4-way stretch", "Modelagem levanta bumbum"],
         imagem: "images/AnyConv.com__conjuntoavarosa2.webp",
         variantes: [
-            { cor: "Detalhe", img: "images/AnyConv.com__conjuntoavarosa3.webp" }
+            { cor: "Rosa", img: "images/AnyConv.com__conjuntoavarosa2.webp" },
+            { cor: "Branco", img: "images/AnyConv.com__conjuntoavabranco.webp" },
+            { cor: "Preto", img: "images/AnyConv.com__conjuntoavapreto.webp" },
+            { cor: "Amarelo", img: "images/AnyConv.com__conjuntoavaamarelo.webp" },
+            { cor: "Azul", img: "images/AnyConv.com__conjuntoavaazul.webp" },
+            { cor: "Marrom", img: "images/AnyConv.com__conjuntoavamarrom.webp" },
+            { cor: "Verde", img: "images/AnyConv.com__conjuntoavaverde.webp" }
         ]
-    },
-    {
-        id: 34, nome: "Conjunto Fitness Ava Verde", precoOriginal: "199,90", preco: '39,90', badge: "NOVO",
-        descricao: "O Conjunto Ava Verde traz o frescor da natureza para a sua rotina de exercícios. Sinta-se renovada e pronta para superar seus limites com este conjunto tecnológico.",
-        caracteristicas: ["Tecido com tecnologia anti-odor", "Proteção térmica", "Cintura alta segura", "Não marca o corpo"],
-        imagem: "images/AnyConv.com__conjuntoavaverde.webp",
-        variantes: []
     },
 
     // ==================== CONJUNTO ANA ====================
