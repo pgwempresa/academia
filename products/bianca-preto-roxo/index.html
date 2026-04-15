@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <base href="../../">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title id="pageTitle">Conjunto Fitness — Elena Store</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="produto.css">
+
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init','1255725740021923');
+    fbq('track','PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1255725740021923&ev=PageView&noscript=1"/></noscript>
+    <!-- End Meta Pixel Code -->
+    <script>window.__FORCE_PRODUCT_ID = 9;</script>
+</head>
+<body>
+
+<!-- Announcement Bar -->
+<div class="announcement-bar">Parcele Em Até 12x Vezes Suas Compras</div>
+
+<!-- Header -->
+<header class="site-header">
+    <div class="header-inner">
+        <div class="header-left">
+            <button class="header-icon" onclick="openSidebar()" aria-label="Menu">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+            </button>
+            <a href="index.html" class="header-icon" aria-label="Busca">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            </a>
+        </div>
+        <a href="index.html" class="header-logo">
+            <img src="images/logo.png" alt="Elena Store" onerror="this.outerHTML='<span style=font-family:serif;font-size:1.4rem;font-weight:500;letter-spacing:3px>ELENA</span>'">
+        </a>
+        <div class="header-right">
+            <a href="#" class="header-icon" aria-label="Conta">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </a>
+            <a href="index.html" class="header-icon" aria-label="Carrinho">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+            </a>
+        </div>
+    </div>
+</header>
+
+<!-- Sidebar -->
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+<div class="sidebar" id="sidebarMenu">
+    <div class="sidebar-head"><span>Menu</span><button onclick="closeSidebar()">✕</button></div>
+    <ul><li><a href="index.html">← Voltar à coleção</a></li><li><a href="index.html">Conjuntos Fitness</a></li></ul>
+</div>
+
+<!-- PRODUCT SECTION -->
+<section class="product-section">
+    <!-- Gallery -->
+    <div class="product-gallery">
+        <div class="gallery-main">
+            <div class="gallery-slider" id="gallerySlider"></div>
+        </div>
+        <div class="gallery-thumbs" id="galleryThumbs"></div>
+    </div>
+
+    <!-- Product Info -->
+    <div class="product-info" id="productInfo">
+        <div class="viewers">
+            <span class="viewers-dot"></span>
+            <span><b id="viewerCount">16</b> pessoas</span> vendo esse produto agora
+        </div>
+
+        <h1 class="product-title" id="prodTitle">Carregando...</h1>
+
+        <div class="price-block">
+            <div class="price-row-old">
+                <span class="price-old" id="priceOld">R$ 189,90</span>
+                <span class="discount-badge" id="discBadge">↓74%</span>
+            </div>
+            <div class="price-current" id="priceCurrent">R$ 49,00</div>
+            <div class="price-installment" id="priceInstallment">ou até 12x de R$ 4,89</div>
+            <button class="payment-forms-btn" onclick="alert('Aceitamos PIX, Cartão de crédito em até 12x e Boleto bancário.')">＋ formas de pagamento</button>
+        </div>
+
+        <!-- ═══ ESCOLHA COR E TAMANHO ═══ -->
+        <div class="choice-section">
+            <div class="choice-divider">
+                <span>Escolha Cor e Tamanho</span>
+            </div>
+
+            <!-- Opção 1 - 1 Conjunto -->
+            <label class="choice-card" id="choice1" onclick="selectChoice(1)">
+                <input type="radio" name="choiceType" value="1" class="choice-radio">
+                <div class="choice-card-inner">
+                    <div class="choice-card-left">
+                        <div class="choice-card-title">1 Conjunto</div>
+                        <div class="choice-card-sub">Preço padrão</div>
+                    </div>
+                    <div class="choice-card-right">
+                        <div class="choice-card-price" id="price1">R$ 39,90</div>
+                    </div>
+                </div>
+            </label>
+
+            <!-- Opção 2 - 3 Conjuntos -->
+            <label class="choice-card popular" id="choice3">
+                <div class="popular-badge">Mais Popular</div>
+                <input type="radio" name="choiceType" value="3" class="choice-radio" checked onclick="selectChoice(3)">
+                <div class="choice-card-inner">
+                    <div class="choice-card-left">
+                        <div class="choice-card-title">3 Conjuntos</div>
+                        <div class="choice-card-sub" id="kitPerItem">Apenas R$ 25,00 por item</div>
+                        <div class="choice-card-sub2">Cor, Tamanho</div>
+                    </div>
+                    <div class="choice-card-right">
+                        <div class="choice-card-price" id="price3kit">R$ 75,00</div>
+                        <div class="choice-card-oldprice" id="price3old">R$ 126,00</div>
+                    </div>
+                </div>
+
+                <!-- Kit rows -->
+                <div class="kit-rows" id="kitRows">
+                    <div class="kit-row">
+                        <span class="kit-row-num">#1</span>
+                        <img class="kit-row-img" id="kitRowImg0" src="" alt="">
+                        <select class="kit-select" id="kitColor0" onchange="kitColorChange(0)"></select>
+                        <select class="kit-select" id="kitSize0" onchange="kitSizeChange(0)"></select>
+                    </div>
+                    <div class="kit-row-divider"></div>
+                    <div class="kit-row">
+                        <span class="kit-row-num">#2</span>
+                        <img class="kit-row-img" id="kitRowImg1" src="" alt="">
+                        <select class="kit-select" id="kitColor1" onchange="kitColorChange(1)"></select>
+                        <select class="kit-select" id="kitSize1" onchange="kitSizeChange(1)"></select>
+                    </div>
+                    <div class="kit-row-divider"></div>
+                    <div class="kit-row">
+                        <span class="kit-row-num">#3</span>
+                        <img class="kit-row-img" id="kitRowImg2" src="" alt="">
+                        <select class="kit-select" id="kitColor2" onchange="kitColorChange(2)"></select>
+                        <select class="kit-select" id="kitSize2" onchange="kitSizeChange(2)"></select>
+                    </div>
+                </div>
+            </label>
+        </div>
+
+        <!-- COMPRAR AGORA -->
+        <button class="buy-btn" id="buyBtn" onclick="comprarAgora()">COMPRAR AGORA</button>
+
+        <!-- Payment icons -->
+        <div class="payment-icons">
+            <img src="images/visa.svg" alt="Visa">
+            <img src="images/mastercard.svg" alt="Mastercard">
+            <img src="images/amex.svg" alt="Amex">
+            <img src="images/elo.svg" alt="Elo">
+            <img src="images/hipercard.svg" alt="Hipercard">
+            <img src="images/pix.svg" alt="Pix">
+            <span class="pay-text-icon" style="height:24px; display:inline-flex; align-items:center; line-height:1;">BOLETO</span>
+        </div>
+
+        <!-- Description -->
+        <div class="product-description">
+            <p id="prodDesc"></p>
+            <h3>Tamanhos:</h3>
+            <ul class="size-guide-list">
+                <li>•P veste 36/38</li>
+                <li>•M veste 40</li>
+                <li>•G veste 42</li>
+                <li>•GG veste 44</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- Você pode gostar -->
+<section class="related-section">
+    <h2 class="related-title">Você pode gostar</h2>
+    <div class="related-grid" id="relatedGrid"></div>
+</section>
+
+<!-- Trust Bar -->
+<section class="trust-bar">
+    <div class="trust-item"><div class="trust-circle"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg></div><h3>Suporte humano</h3><p>Atendimento dedicado, todos os dias</p></div>
+    <div class="trust-item"><div class="trust-circle"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><h3>Compra segura</h3><p>Transações 100% protegidas</p></div>
+    <div class="trust-item"><div class="trust-circle"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg></div><h3>Desconto único</h3><p>Aproveite ofertas exclusivas!</p></div>
+</section>
+
+<!-- Footer -->
+<footer class="site-footer">
+    <div class="footer-top">
+        <div class="footer-col"><h3>Inscreva-se para novas promoções e ofertas exclusivas</h3><div class="footer-email"><input type="email" placeholder="E-mail"><button>›</button></div></div>
+        <div class="footer-col"><h4>Menu</h4><a href="index.html">Coleção</a><a href="#">Pesquisa</a></div>
+        <div class="footer-col"><h4>Sobre nós</h4><p>Moda fitness com elegância e exclusividade, unindo design e qualidade impecável.</p></div>
+    </div>
+    <div class="footer-bottom">
+        <div><span style="font-size:.72rem;color:#888">Segurança e qualidade</span></div>
+        <div><span style="font-size:.72rem;color:#888">Nós aceitamos: PIX · Cartão · Boleto</span></div>
+    </div>
+    <div class="footer-copy">© 2025 Elena Store. Todos os direitos reservados.</div>
+</footer>
+
+<!-- Sticky bar -->
+<div class="sticky-bar" id="stickyBar">
+    <div class="sticky-inner">
+        <div class="sticky-info">
+            <img id="stickyImg" src="" alt="">
+            <div><div class="sticky-name" id="stickyName"></div><div class="sticky-price" id="stickyPrice"></div></div>
+        </div>
+        <button class="sticky-buy" onclick="comprarAgora()">COMPRAR AGORA</button>
+    </div>
+</div>
+
+<script src="produtos.js"></script>
+<script src="produto.js"></script>
+</body>
+</html>

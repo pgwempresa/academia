@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Pagamento PIX - Elena Store</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init','1255725740021923');
+    fbq('track','PageView');
+    fbq('track','Purchase',{currency:'BRL',value:0});
+    </script>
+    <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1255725740021923&ev=PageView&noscript=1"/></noscript>
+    <!-- End Meta Pixel Code -->
+
+    <!-- Checkout-Pay Client -->
+    <script src="https://checkout-taupe-six.vercel.app/checkout-client.js"></script>
+
+    <style>
+        :root {
+            --bg: #f6f1eb;
+            --card: #fffdf9;
+            --ink: #201815;
+            --muted: #72655d;
+            --line: #e7ddd3;
+            --brand: #116b43;
+            --brand-dark: #0d5736;
+            --brand-soft: #eef8f1;
+            --warn: #8a5a12;
+            --warn-soft: #fff6df;
+        }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background:
+                radial-gradient(circle at top left, rgba(17, 107, 67, 0.08), transparent 28%),
+                linear-gradient(180deg, #fbf7f2 0%, var(--bg) 100%);
+            color: var(--ink);
+            font-family: 'Montserrat', sans-serif;
+            padding: 24px 16px 40px;
+        }
+        .page {
+            width: 100%;
+            max-width: 460px;
+            margin: 0 auto;
+        }
+        .brand {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 18px;
+        }
+        .logo {
+            max-height: 62px;
+            width: auto;
+        }
+        .pix-container {
+            background: var(--card);
+            border: 1px solid rgba(32, 24, 21, 0.06);
+            border-radius: 24px;
+            padding: 24px 20px;
+            box-shadow: 0 18px 50px rgba(66, 42, 28, 0.10);
+        }
+        .trust-bar {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 18px;
+            color: var(--brand);
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+        h1 {
+            font-size: 2rem;
+            line-height: 1.05;
+            margin: 0 0 10px;
+            text-align: center;
+        }
+        .lead {
+            color: var(--muted);
+            font-size: 0.98rem;
+            line-height: 1.6;
+            text-align: center;
+            margin: 0 0 22px;
+        }
+        .instruction-card {
+            background: var(--brand-soft);
+            border: 1px solid rgba(17, 107, 67, 0.14);
+            border-radius: 18px;
+            padding: 16px;
+            margin-bottom: 18px;
+            text-align: left;
+        }
+        .instruction-title {
+            margin: 0 0 6px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--brand-dark);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+        .instruction-text {
+            margin: 0;
+            color: #345246;
+            font-size: 0.92rem;
+            line-height: 1.5;
+        }
+        .copy-paste-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        label {
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: var(--ink);
+            text-align: left;
+        }
+        .pix-code-box {
+            width: 100%;
+            min-height: 132px;
+            padding: 16px;
+            border: 1px solid var(--line);
+            border-radius: 18px;
+            background: #fff;
+            font-size: 0.9rem;
+            line-height: 1.55;
+            font-family: monospace;
+            color: #2f2b28;
+            resize: none;
+            word-break: break-all;
+        }
+        .pix-code-box.is-empty {
+            background: #fbf8f5;
+            color: #8f7f73;
+        }
+        button {
+            background: linear-gradient(180deg, #18a45f 0%, #11834d 100%);
+            color: #fff;
+            border: none;
+            padding: 16px 18px;
+            border-radius: 16px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            width: 100%;
+            transition: transform 0.18s ease, box-shadow 0.18s ease, opacity 0.18s ease;
+            box-shadow: 0 14px 28px rgba(17, 107, 67, 0.24);
+        }
+        button:hover { transform: translateY(-1px); }
+        button:disabled {
+            opacity: 0.55;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+        .inline-message {
+            display: none;
+            margin-top: 10px;
+            border-radius: 14px;
+            padding: 12px 14px;
+            font-size: 0.9rem;
+            line-height: 1.45;
+            text-align: left;
+        }
+        .inline-message.show { display: block; }
+        .inline-message.success {
+            background: var(--brand-soft);
+            border: 1px solid rgba(17, 107, 67, 0.18);
+            color: var(--brand-dark);
+        }
+        .inline-message.warning {
+            background: var(--warn-soft);
+            border: 1px solid rgba(138, 90, 18, 0.18);
+            color: var(--warn);
+        }
+        .loading {
+            margin-top: 18px;
+            padding-top: 18px;
+            border-top: 1px solid var(--line);
+            font-size: 0.92rem;
+            color: var(--muted);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .loading-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 999px;
+            background: var(--brand);
+            box-shadow: 0 0 0 0 rgba(17, 107, 67, 0.4);
+            animation: pulse 1.6s infinite;
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(17, 107, 67, 0.35); }
+            70% { box-shadow: 0 0 0 10px rgba(17, 107, 67, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(17, 107, 67, 0); }
+        }
+        @media (max-width: 480px) {
+            body { padding: 18px 12px 28px; }
+            .pix-container { padding: 22px 16px; border-radius: 22px; }
+            h1 { font-size: 1.75rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="brand">
+            <img src="images/logo.png" alt="Elena Store" class="logo" onerror="this.style.display='none'">
+        </div>
+
+        <div class="pix-container">
+            <div class="trust-bar">
+                <span>Pagamento protegido</span>
+            </div>
+
+            <h1>Finalize com PIX</h1>
+            <p class="lead">Copie o codigo abaixo e cole no app do seu banco. Assim que o pagamento for confirmado, a aprovacao acontece automaticamente.</p>
+
+            <div class="instruction-card">
+                <p class="instruction-title">Como pagar</p>
+                <p class="instruction-text">Toque em copiar codigo PIX, abra o aplicativo do seu banco e cole no campo PIX Copia e Cola.</p>
+            </div>
+
+            <div class="copy-paste-wrapper">
+                <label for="pixCode">Codigo PIX Copia e Cola</label>
+                <textarea id="pixCode" class="pix-code-box" readonly>Carregando codigo...</textarea>
+                <button id="copyButton" onclick="copiarPix()">Copiar codigo PIX</button>
+                <div id="copyFeedback" class="inline-message" aria-live="polite"></div>
+            </div>
+
+            <div class="loading">
+                <span class="loading-dot"></span>
+                <span id="statusText">Aguardando confirmacao do pagamento...</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        CheckoutClient.init({
+            baseUrl:   "https://checkout-taupe-six.vercel.app",
+            storeId:   "loja-principal",
+            storeName: "Sua Loja",
+            storeUrl:  "https://academiapromo.vercel.app/"
+        });
+
+        const pixData = JSON.parse(localStorage.getItem('lastPixData'));
+        const qrInput = document.getElementById('pixCode');
+        const statusText = document.getElementById('statusText');
+        const copyFeedback = document.getElementById('copyFeedback');
+        const copyButton = document.getElementById('copyButton');
+
+        if (!pixData || !pixData.id) {
+            exibirMensagem('warning', 'Nenhum pedido encontrado. Redirecionando para o inicio.');
+            window.location.href = 'index.html';
+        } else {
+            atualizarCodigo(pixData.qrCode || "");
+            carregarCodigoPix(pixData.id);
+            iniciarPolling(pixData.id);
+        }
+
+        function atualizarCodigo(value) {
+            const codigo = (value || "").trim();
+            if (codigo) {
+                qrInput.value = codigo;
+                qrInput.classList.remove('is-empty');
+                copyButton.disabled = false;
+                return true;
+            }
+
+            qrInput.value = "Estamos buscando o codigo PIX da sua transacao...";
+            qrInput.classList.add('is-empty');
+            copyButton.disabled = true;
+            return false;
+        }
+
+        function exibirMensagem(type, text) {
+            copyFeedback.className = `inline-message show ${type}`;
+            copyFeedback.textContent = text;
+        }
+
+        async function copiarPix() {
+            const codigo = qrInput.value.trim();
+            if (!codigo || codigo.includes('buscando o codigo') || codigo === 'Codigo indisponivel') {
+                exibirMensagem('warning', 'O codigo PIX ainda nao ficou pronto. Aguarde alguns segundos e tente novamente.');
+                return;
+            }
+
+            try {
+                await navigator.clipboard.writeText(codigo);
+                exibirMensagem('success', 'PIX copiado com sucesso. Agora e so colar no app do seu banco.');
+            } catch (error) {
+                qrInput.focus();
+                qrInput.select();
+                document.execCommand("copy");
+                exibirMensagem('success', 'PIX copiado com sucesso. Agora e so colar no app do seu banco.');
+            }
+        }
+
+        async function carregarCodigoPix(transactionId) {
+            try {
+                const data = await CheckoutClient.getStatus(transactionId);
+                const codigo = data.qrCode || "";
+
+                if (atualizarCodigo(codigo)) {
+                    statusText.textContent = 'Codigo PIX pronto para copiar e pagar.';
+                    const storedData = {
+                        ...(pixData || {}),
+                        qrCode: codigo
+                    };
+                    localStorage.setItem('lastPixData', JSON.stringify(storedData));
+                }
+            } catch (error) {
+                console.error("Erro ao carregar codigo PIX", error);
+            }
+        }
+
+        function iniciarPolling(transactionId) {
+            setInterval(async () => {
+                try {
+                    const t = await CheckoutClient.getStatus(transactionId);
+                    if (!pixData?.qrCode) {
+                        const codigo = t.qrCode || "";
+                        if (atualizarCodigo(codigo)) {
+                            pixData.qrCode = codigo;
+                            localStorage.setItem('lastPixData', JSON.stringify(pixData));
+                            statusText.textContent = 'Codigo PIX pronto para copiar e pagar.';
+                        }
+                    }
+
+                    if (t.status === 'PAID' || t.status === 'APPROVED' || t.status === 'COMPLETED' || t.status === 'paid' || t.status === 'approved') {
+                        window.location.href = 'obrigado.html';
+                    }
+                } catch(e) {
+                    console.error("Erro ao verificar status", e);
+                }
+            }, 5000);
+        }
+
+    </script>
+</body>
+</html>

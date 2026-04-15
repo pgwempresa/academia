@@ -1,0 +1,499 @@
+:root {
+    --primary-green: #3f9b42;
+    --primary-green-hover: #348236;
+    --bg-main: #f6f7f9;
+    --bg-header: #ffffff;
+    --text-main: #333333;
+    --text-muted: #777777;
+    --border-color: #e5e7eb;
+    --border-radius: 12px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    background: var(--bg-main);
+    color: var(--text-main);
+    padding-bottom: 50px;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Header */
+.header-checkout {
+    background: var(--bg-header);
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5%;
+    border-bottom: 1px solid var(--border-color);
+}
+.header-checkout img {
+    height: 35px;
+    object-fit: contain;
+}
+.header-safe {
+    font-size: 0.75rem;
+    color: #555;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+}
+.header-safe svg {
+    width: 14px;
+    height: 14px;
+}
+
+/* Container */
+.container-checkout {
+    max-width: 500px;
+    margin: 30px auto 0;
+    padding: 0 20px;
+}
+
+/* Progress Steps */
+.progress-container {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 35px;
+    padding: 0 10px;
+}
+.progress-container::before {
+    content: '';
+    position: absolute;
+    top: 15px; /* middle of 30px circle */
+    left: 40px;
+    right: 40px;
+    height: 2px;
+    background: var(--primary-green);
+    z-index: 1;
+}
+.step-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    z-index: 2;
+    position: relative;
+    width: 100px;
+}
+.step-circle {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--primary-green);
+    color: #fff;
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.9rem;
+    border: 3px solid var(--bg-main); /* to make it look detached from the line if the line goes through */
+}
+.step-item.inactive .step-circle {
+    background: #ccc;
+    color: #fff;
+}
+.progress-container::before {
+    /* If there are inactive steps, the line to them should be grey.
+       Since we transition step by step, we can use a linear gradient or just keep it green */
+    background: linear-gradient(to right, var(--primary-green) 50%, #ccc 50%);
+    background-size: 200% 100%;
+    background-position: left;
+    transition: all 0.3s;
+}
+.progress-container[data-step="1"]::before { background-position: right; }
+.progress-container[data-step="2"]::before { background-position: center; }
+.progress-container[data-step="3"]::before { background-position: left; }
+
+.step-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #222;
+    text-align: center;
+}
+
+/* Summary Accordion */
+.summary-wrapper {
+    background: #eff1f3;
+    border-radius: 12px;
+    border: 1px solid #e1e3e6;
+    margin-bottom: 30px;
+}
+.summary-header {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+.summary-header-left {
+    display: flex;
+    flex-direction: column;
+}
+.summary-title {
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: #111;
+}
+.summary-subtitle {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+.summary-price-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    color: var(--primary-green);
+    font-size: 1.1rem;
+}
+.chevron {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.2s;
+}
+.summary-content {
+    display: none;
+    padding: 0 20px 20px;
+    border-top: 1px solid #e1e3e6;
+    margin-top: -5px;
+    padding-top: 15px;
+}
+.summary-content.active {
+    display: block;
+}
+.summary-item {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    margin-bottom: 15px;
+}
+.summary-img {
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+    object-fit: cover;
+    border: 1px solid #ddd;
+}
+.summary-details { flex: 1; }
+.summary-item-title { font-size: 0.85rem; font-weight: 600; color:#333; margin-bottom: 4px; }
+.summary-item-price { font-size: 0.9rem; font-weight: 700; color: var(--primary-green); }
+
+.totals-row { display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 8px; color: #555;}
+.totals-row.bold { font-weight: 700; color: #111; font-size: 1rem; border-top: 1px solid #e1e3e6; padding-top: 12px; margin-top: 8px; }
+
+/* Main Section Header */
+.section-title-wrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 5px;
+}
+.section-title-circle {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: var(--primary-green);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+.section-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #111;
+}
+.section-subtitle {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+    padding-left: 36px;
+}
+
+/* Card / Forms */
+.card-step {
+    display: none; /* JS will toggle */
+    animation: fadeIn 0.3s ease;
+}
+.card-step.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.input-label {
+    display: block;
+    font-size: 0.8rem;
+    color: #555;
+    margin-bottom: 6px;
+    padding-left: 2px;
+}
+.input-field {
+    width: 100%;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 14px;
+    font-size: 0.95rem;
+    background: #fff;
+    margin-bottom: 15px;
+    outline: none;
+    transition: 0.2s;
+}
+.input-field:focus {
+    border-color: var(--primary-green);
+    box-shadow: 0 0 0 2px rgba(63, 155, 66, 0.1);
+}
+.row-2 {
+    display: flex;
+    gap: 10px;
+}
+.row-2 > div {
+    flex: 1;
+}
+
+/* Shipping Card */
+.shipping-card {
+    background: #fff;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.shipping-card.selected {
+    border: 2px solid var(--primary-green);
+    padding: 15px;
+}
+.shipping-radio {
+    accent-color: var(--primary-green);
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+}
+.shipping-info {
+    flex: 1;
+}
+.shipping-title {
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: #222;
+}
+.shipping-desc {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+.shipping-price-val {
+    font-weight: 700;
+    color: #111;
+    text-align: right;
+}
+.shipping-logo {
+    height: 35px;
+    width: 45px;
+    object-fit: contain;
+}
+
+/* Payment Box */
+.payment-box {
+    background: #fff;
+    border: 1px solid #111;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+.payment-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: 15px;
+}
+.payment-header input {
+    accent-color: #111;
+    width: 20px;
+    height: 20px;
+}
+.pix-icon {
+    width: 20px;
+    height: 20px;
+}
+.payment-text {
+    font-size: 0.85rem;
+    color: #444;
+    line-height: 1.5;
+    margin-bottom: 15px;
+}
+.payment-highlight {
+    font-weight: 700;
+    color: var(--primary-green);
+    font-size: 1rem;
+    margin-bottom: 20px;
+}
+
+/* Order Bump */
+.order-bump {
+    background: #fcfcfc;
+    border: 2px dashed #8ad19c;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 20px;
+    position: relative;
+    display: flex;
+    gap: 12px;
+}
+.order-bump-badge {
+    position: absolute;
+    top: -10px;
+    right: 15px;
+    background: var(--primary-green);
+    color: #fff;
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 4px 8px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+.order-bump-check {
+    accent-color: var(--primary-green);
+    width: 20px;
+    height: 20px;
+    margin-top: 5px;
+}
+.order-bump-img {
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+.order-bump-content { flex: 1; }
+.order-bump-title {
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: #222;
+    margin-bottom: 4px;
+    line-height: 1.2;
+}
+.order-bump-tag {
+    display: inline-block;
+    background: #e6f4ea;
+    color: var(--primary-green);
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 10px;
+    margin-bottom: 6px;
+}
+.order-bump-desc {
+    font-size: 0.75rem;
+    color: #666;
+    margin-bottom: 6px;
+}
+.order-bump-prices {
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+.price-old { text-decoration: line-through; color: #999; margin-right: 6px; font-weight: 500;}
+.price-new { color: var(--primary-green); }
+
+.order-bump-footer {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.75rem;
+    color: #333;
+    font-weight: 600;
+    margin-top: 8px;
+}
+
+/* Button */
+.btn-submit {
+    background: var(--primary-green);
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    padding: 16px;
+    width: 100%;
+    font-weight: 700;
+    font-size: 1.05rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    transition: 0.2s;
+}
+.btn-submit:hover {
+    background: var(--primary-green-hover);
+}
+.btn-submit:disabled {
+    background: #a5d6a7;
+    cursor: not-allowed;
+}
+
+/* Footer Full Width */
+.footer-checkout {
+    width: 100%;
+    background: var(--bg-main);
+    border-top: 1px solid var(--border-color);
+    padding: 30px 20px 20px;
+    margin-top: 20px;
+}
+
+.footer-badges {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 0 auto 20px;
+    max-width: 400px;
+}
+.badge-box {
+    background: #ffffff;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 12px 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+}
+.badge-box svg {
+    width: 24px;
+    height: 24px;
+    color: #333;
+}
+.badge-text {
+    font-size: 0.75rem;
+    color: #666;
+}
+.badge-title {
+    font-weight: 700;
+    color: #111;
+    display: block;
+}
+
+.copyright {
+    text-align: center;
+    font-size: 0.75rem;
+    color: #999;
+}

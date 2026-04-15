@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Checkout Seguro</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="checkout.css?v=4">
+
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init','1255725740021923');
+    fbq('track','PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1255725740021923&ev=PageView&noscript=1"/></noscript>
+    <!-- End Meta Pixel Code -->
+
+    <!-- TikTok Pixel Code Start -->
+    <script>
+    !function (w, d, t) {
+      w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(
+    var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script");
+    n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
+      ttq.load('D7CIA0BC77UFLDKDRRC0');
+      ttq.page();
+    }(window, document, 'ttq');
+    </script>
+    <!-- TikTok Pixel Code End -->
+
+    <!-- Checkout-Pay Client -->
+    <script src="https://checkout-taupe-six.vercel.app/checkout-client.js"></script>
+</head>
+<body>
+
+    <header class="header-checkout">
+        <img src="images/logo.png" alt="Vallena Store" onerror="this.src='https://via.placeholder.com/150x50?text=VALLENA'">
+        <div class="header-safe">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+            PAGAMENTO 100% SEGURO
+        </div>
+    </header>
+
+    <div class="container-checkout">
+        
+        <!-- Progress Steps -->
+        <div class="progress-container" data-step="1" id="progressContainer">
+            <div class="step-item" id="stepIndicator1">
+                <div class="step-circle">1</div>
+                <div class="step-label">Informações<br>pessoais</div>
+            </div>
+            <div class="step-item inactive" id="stepIndicator2">
+                <div class="step-circle">2</div>
+                <div class="step-label">Entrega</div>
+            </div>
+            <div class="step-item inactive" id="stepIndicator3">
+                <div class="step-circle">3</div>
+                <div class="step-label">Pagamento</div>
+            </div>
+        </div>
+
+        <form id="checkoutForm">
+            <!-- Accordion Summary -->
+            <div class="summary-wrapper" id="summaryWrapper">
+                <div class="summary-header" onclick="toggleSummary()">
+                    <div class="summary-header-left">
+                        <span class="summary-title">RESUMO</span>
+                        <span class="summary-subtitle">Informações da sua compra</span>
+                    </div>
+                    <div class="summary-price-box">
+                        <span id="valorTotalAccordion">R$ --,--</span>
+                        <svg class="chevron" id="summaryChevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </div>
+                </div>
+                <div class="summary-content" id="summaryContent">
+                    <div id="summaryItems">
+                        <!-- injected by JS -->
+                    </div>
+                    
+                    <div class="totals-row">
+                        <span id="subtotalLabel">Subtotal</span>
+                        <span id="valorSubtotal">R$ --,--</span>
+                    </div>
+                    <div class="totals-row">
+                        <span>Frete</span>
+                        <span id="valorFreteVisual" style="color: var(--primary-green); font-weight: 700;">GRÁTIS</span>
+                    </div>
+                    <div class="totals-row bold">
+                        <span>Total a pagar</span>
+                        <span id="valorTotalFinalResumo">R$ --,--</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Passo 1: Informações Pessoais -->
+            <div class="card-step active" id="step1Card">
+                <div class="section-title-wrap">
+                    <div class="section-title-circle">1</div>
+                    <div class="section-title">Informações pessoais</div>
+                </div>
+                <div class="section-subtitle">Preencha seus dados para entrega</div>
+
+                <label class="input-label">Nome completo *</label>
+                <input type="text" id="chkNome" class="input-field" placeholder="Digite seu nome completo" required>
+
+                <label class="input-label">E-mail *</label>
+                <input type="email" id="chkEmail" class="input-field" placeholder="seu@email.com" required>
+
+                <label class="input-label">Telefone / WhatsApp *</label>
+                <input type="tel" id="chkTelefone" class="input-field" placeholder="(00) 00000-0000" required>
+
+                <label class="input-label">CPF *</label>
+                <input type="text" id="chkCpf" class="input-field" placeholder="000.000.000-00" required>
+                
+                <button type="button" class="btn-submit" onclick="nextStep(2)">Continuar</button>
+            </div>
+
+            <!-- Passo 2: Entrega -->
+            <div class="card-step" id="step2Card">
+                <div class="section-title-wrap">
+                    <div class="section-title-circle">2</div>
+                    <div class="section-title">Entrega</div>
+                </div>
+                <div class="section-subtitle">Onde você quer receber seu pedido?</div>
+
+                <label class="input-label">CEP *</label>
+                <input type="text" id="chkCep" class="input-field" placeholder="00000-000" required>
+                
+                <div class="row-2">
+                    <div style="flex: 2;">
+                        <label class="input-label">Rua / Avenida *</label>
+                        <input type="text" id="chkRua" class="input-field" required>
+                    </div>
+                    <div style="flex: 1;">
+                        <label class="input-label">Número *</label>
+                        <input type="text" id="chkNumero" class="input-field" required>
+                    </div>
+                </div>
+
+                <div class="row-2">
+                    <div>
+                        <label class="input-label">Bairro *</label>
+                        <input type="text" id="chkBairro" class="input-field" required>
+                    </div>
+                    <div>
+                        <label class="input-label">Cidade *</label>
+                        <input type="text" id="chkCidade" class="input-field" required>
+                    </div>
+                    <div style="flex: 0.5;">
+                        <label class="input-label">UF *</label>
+                        <input type="text" id="chkEstado" class="input-field" placeholder="SP" maxlength="2" required>
+                    </div>
+                </div>
+
+                <div style="margin-top: 25px; margin-bottom: 25px;">
+                    <!-- Option 1: PAC -->
+                    <label class="shipping-card selected" id="lblFrete1">
+                        <input type="radio" name="freteOpt" value="5.92" class="shipping-radio" checked>
+                        <div class="shipping-info">
+                            <div class="shipping-title">Correios PAC</div>
+                            <div class="shipping-desc">Receba em 3 a 9 dias úteis</div>
+                        </div>
+                        <div class="shipping-price-val">R$ 5,92</div>
+                        <img src="images/correios.svg" class="shipping-logo" alt="Correios">
+                    </label>
+
+                    <!-- Option 2: Sedex -->
+                    <label class="shipping-card" id="lblFrete2">
+                        <input type="radio" name="freteOpt" value="18.12" class="shipping-radio">
+                        <div class="shipping-info">
+                            <div class="shipping-title">Correios Sedex</div>
+                            <div class="shipping-desc">Receba em 2 a 6 dias úteis</div>
+                        </div>
+                        <div class="shipping-price-val">R$ 18,12</div>
+                        <img src="images/sedex.svg" class="shipping-logo" alt="Sedex">
+                    </label>
+                </div>
+
+                <button type="button" class="btn-submit" onclick="nextStep(3)">Continuar</button>
+            </div>
+
+            <!-- Passo 3: Pagamento -->
+            <div class="card-step" id="step3Card">
+                <div class="section-title-wrap">
+                    <div class="section-title-circle">3</div>
+                    <div class="section-title">Pagamento</div>
+                </div>
+                <div class="section-subtitle">Escolha uma forma de pagamento</div>
+
+                <div class="payment-box">
+                    <div class="payment-header">
+                        <input type="radio" checked readonly> 
+                        <svg viewBox="0 0 24 24" class="pix-icon" fill="#32bca3"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg> Pix
+                    </div>
+                    <div class="payment-text">
+                        A confirmação de pagamento é realizada em poucos minutos. Utilize o aplicativo do seu banco para pagar.
+                    </div>
+                    <div class="payment-highlight">
+                        Valor no pix: <span id="valorTotalFinal">R$ --,--</span>
+                    </div>
+
+                    <button type="submit" class="btn-submit" id="btnSubmit">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                        Comprar agora
+                    </button>
+                </div>
+            </div>
+            
+        </form>
+    </div>
+
+    <!-- Full width Footer -->
+    <footer class="footer-checkout">
+        <div class="footer-badges">
+            <div class="badge-box">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><polyline points="9 12 11 14 15 10"></polyline></svg>
+                <div class="badge-text">
+                    <span class="badge-title">SEGURO</span>
+                    Certificado SSL
+                </div>
+            </div>
+            <div class="badge-box">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><polyline points="9 12 11 14 15 10"></polyline></svg>
+                <div class="badge-text">
+                    <span class="badge-title">PAGAMENTOS</span>
+                    Seguros
+                </div>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            © 2026 · Todos os direitos reservados
+        </div>
+    </footer>
+
+    <script src="produtos.js"></script>
+    <script>
+        CheckoutClient.init({
+            baseUrl:   "https://checkout-taupe-six.vercel.app",
+            storeId:   "loja-principal",
+            storeName: "Sua Loja",
+            storeUrl:  "https://academiapromo.vercel.app/"
+        });
+
+        // 1. Carregar Dados Dinâmicos do Produto
+        const urlParams = new URLSearchParams(window.location.search);
+        const prodId    = parseInt(urlParams.get('id')) || 1;
+        const sizeParam  = urlParams.get('size');
+        const colorParam = urlParams.get('color');
+        const imgParam   = urlParams.get('img');
+        const isKit      = urlParams.get('kit') === '1';
+        const kitDataRaw = urlParams.get('kitData');
+        const extrasRaw  = urlParams.get('extras');
+        
+        const produto = typeof produtos !== 'undefined'
+            ? (produtos.find(p => p.id === prodId) || produtos[0])
+            : { nome: 'Conjunto Fitness', imagem: 'images/giftbox.png', preco: '39,90' };
+
+        const SINGLE_PRICE = parseFloat((produto.preco || '39,90').replace(',', '.'));
+        const KIT_PRICE    = Math.round(SINGLE_PRICE * 2.0 * 100) / 100; // kit 3x with discount
+        let PRODUCT_PRICE = isKit ? KIT_PRICE : SINGLE_PRICE;
+
+        let extras = [];
+        if (extrasRaw) {
+            try { extras = JSON.parse(decodeURIComponent(extrasRaw)); } catch(e) {}
+            extras.forEach(extra => {
+                PRODUCT_PRICE += parseFloat(extra.price) || 0;
+            });
+        }
+
+        // Render summary items
+        const summaryEl = document.getElementById('summaryItems');
+        let html = '';
+        if (isKit && kitDataRaw) {
+            let kitItems = [];
+            try { kitItems = JSON.parse(decodeURIComponent(kitDataRaw)); } catch(e) {}
+            html += kitItems.map((item, i) => `
+                <div class="summary-item" style="border-bottom: 1px solid #f5f5f5; padding-bottom: 14px; margin-bottom: 14px;">
+                    <img src="${item.img || produto.imagem}" class="summary-img" alt="Conjunto ${i+1}" onerror="this.src='images/giftbox.png'" style="width:60px;height:60px;object-fit:cover;border-radius:8px;flex-shrink:0;">
+                    <div class="summary-details">
+                        <div class="summary-title">Conjunto ${i+1} — ${produto.nome.replace(/\s+(Branco|Preto|Rosa|Azul|Verde|Roxo|Marrom|Vinho|Laranja|Vermelho|Amarelo|Marinho)$/i,'')}</div>
+                        <div style="font-size:.78rem;color:#888;margin-bottom:4px;">Cor: ${item.color} · Tam: ${item.size}</div>
+                    </div>
+                </div>
+            `).join('');
+            html += `<div style="font-size:.8rem;color:#1e7a4a;font-weight:600;text-align:right;background:#e3f5ec;padding:8px 12px;border-radius:8px;">🎁 Kit 3 conjuntos</div>`;
+            document.getElementById('subtotalLabel').innerText = 'Subtotal (Kit 3 conjuntos)';
+        } else {
+            const displayImg = imgParam ? decodeURIComponent(imgParam) : produto.imagem;
+            html += `
+                <div class="summary-item" style="border-bottom: 1px solid #f5f5f5; padding-bottom: 14px; margin-bottom: 14px;">
+                    <img src="${displayImg}" class="summary-img" alt="Produto" onerror="this.src='images/giftbox.png'" style="width:60px;height:60px;object-fit:cover;border-radius:8px;flex-shrink:0;">
+                    <div class="summary-details">
+                        <div class="summary-title">${produto.nome}</div>
+                        <div style="font-size:.78rem;color:#888;margin-bottom:4px;">${[sizeParam ? 'Tam: '+sizeParam : '', colorParam ? 'Cor: '+colorParam : ''].filter(Boolean).join(' · ')}</div>
+                        <div class="summary-price" style="color:#1e7a4a;font-weight:800;">R$ ${produto.preco}</div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Add extras to UI
+        if (extras.length > 0) {
+            html += extras.map(extra => `
+                <div class="summary-item" style="border-bottom: 1px solid #f5f5f5; padding-bottom: 14px; margin-bottom: 14px;">
+                    <img src="${extra.img}" class="summary-img" alt="${extra.name}" onerror="this.src='images/giftbox.png'" style="width:60px;height:60px;object-fit:cover;border-radius:8px;flex-shrink:0;">
+                    <div class="summary-details">
+                        <div class="summary-title">${extra.name}</div>
+                        <div style="font-size:.78rem;color:#888;margin-bottom:4px;">Cor: ${extra.color} · Tam: ${extra.size}</div>
+                        <div class="summary-price" style="color:#1e7a4a;font-weight:800;">R$ ${parseFloat(extra.price).toFixed(2).replace('.', ',')}</div>
+                    </div>
+                </div>
+            `).join('');
+            document.getElementById('subtotalLabel').innerText = `Subtotal (${isKit ? 'Kit' : '1 conjunto'} + Extras)`;
+        }
+
+        summaryEl.innerHTML = html;
+
+        document.getElementById('valorSubtotal').innerText = `R$ ${PRODUCT_PRICE.toFixed(2).replace('.', ',')}`;
+
+        // Variável de controle do frete
+        let freteVal = 5.92; // Primeiro frete PAC R$ 5,92
+        let totalVal = PRODUCT_PRICE + freteVal;
+
+        // Accordion Resumo
+        window.toggleSummary = function() {
+            const content = document.getElementById('summaryContent');
+            content.classList.toggle('active');
+            const chevron = document.getElementById('summaryChevron');
+            if(content.classList.contains('active')) {
+                chevron.style.transform = 'rotate(180deg)';
+            } else {
+                chevron.style.transform = 'rotate(0deg)';
+            }
+        };
+
+        // Passos (Steps)
+        window.nextStep = function(step) {
+            // Em um app real deveríamos validar os inputs antes de ir para o próximo passo
+            // Ocultar todos os cards
+            document.querySelectorAll('.card-step').forEach(c => c.classList.remove('active'));
+            // Mostrar o próximo card
+            document.getElementById('step' + step + 'Card').classList.add('active');
+            // Atualizar progress bar attr
+            document.getElementById('progressContainer').setAttribute('data-step', step);
+            // Remover 'active' dos indicadores
+            document.querySelectorAll('.step-item').forEach(s => s.classList.add('inactive'));
+            
+            // Atualizar os indicadores (Marcar concluídos e ativo)
+            for (let i = 1; i <= step; i++) {
+                const indicator = document.getElementById('stepIndicator' + i);
+                indicator.classList.remove('inactive');
+            }
+        };
+        // 2. Lógica de atualização do Frete
+        const radios = document.querySelectorAll('.shipping-radio');
+        const labels = document.querySelectorAll('.shipping-card');
+        
+        labels.forEach(label => {
+            label.addEventListener('click', () => {
+                labels.forEach(l => l.classList.remove('selected'));
+                label.classList.add('selected');
+                
+                const input = label.querySelector('input');
+                input.checked = true;
+                freteVal = parseFloat(input.value);
+                totalVal = PRODUCT_PRICE + freteVal;
+                atualizarValores();
+            });
+        });
+        // 3. Atualizar e exibir totais do Frete
+        function atualizarValores() {
+            const elVisual = document.getElementById('valorFreteVisual');
+            if(elVisual) {
+                if(freteVal === 0) {
+                    elVisual.innerText = 'GRÁTIS';
+                    elVisual.style.color = 'var(--primary-green)';
+                    elVisual.style.fontWeight = '700';
+                } else {
+                    elVisual.innerText = 'R$ ' + freteVal.toFixed(2).replace('.', ',');
+                    elVisual.style.color = '#333';
+                    elVisual.style.fontWeight = '700';
+                }
+            }
+            
+            const totalStr = 'R$ ' + totalVal.toFixed(2).replace('.', ',');
+            const elTotalResumo = document.getElementById('valorTotalFinalResumo');
+            if(elTotalResumo) elTotalResumo.innerText = totalStr;
+
+            const elFinal = document.getElementById('valorTotalFinal');
+            if(elFinal) elFinal.innerText = totalStr;
+
+            const elAccordion = document.getElementById('valorTotalAccordion');
+            if(elAccordion) elAccordion.innerText = totalStr;
+        }
+        atualizarValores();
+
+        // TikTok Event: InitiateCheckout
+        if(typeof ttq !== 'undefined') {
+            ttq.track('InitiateCheckout', {
+                content_type: 'product',
+                content_id: String(prodId),
+                content_name: produto.nome,
+                value: totalVal,
+                currency: 'BRL',
+                quantity: 1
+            });
+        }
+
+        // --- MÁSCARAS E PREENCHIMENTO AUTOMÁTICO VIA-CEP ---
+        const cepInput = document.getElementById('chkCep');
+        const ruaInput = document.getElementById('chkRua');
+        const bairroInput = document.getElementById('chkBairro');
+        const cidadeInput = document.getElementById('chkCidade');
+        const estadoInput = document.getElementById('chkEstado');
+        const numeroInput = document.getElementById('chkNumero');
+        const cpfInput = document.getElementById('chkCpf');
+        const telefoneInput = document.getElementById('chkTelefone');
+        const nomeInput = document.getElementById('chkNome');
+
+        // Permitir apenas letras no Nome
+        nomeInput.addEventListener('input', function(e) {
+            e.target.value = e.target.value.replace(/[^a-zA-ZáàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ\s]/g, '');
+        });
+
+        // Máscara CEP e ViaCEP
+        cepInput.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, ''); // Apenas números
+            if (value.length > 5) {
+                value = value.replace(/^(\d{5})(\d)/, '$1-$2');
+            }
+            e.target.value = value.substring(0, 9);
+            
+            // Auto-completar ViaCEP
+            const cepLimpo = value.replace(/\D/g, '');
+            if (cepLimpo.length === 8) {
+                fetch(`https://viacep.com.br/ws/${cepLimpo}/json/`)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (!data.erro) {
+                            ruaInput.value = data.logradouro;
+                            bairroInput.value = data.bairro;
+                            cidadeInput.value = data.localidade;
+                            estadoInput.value = data.uf;
+                            numeroInput.focus(); // Direciona para o número após preencher
+                        }
+                    })
+                    .catch(error => console.error("Erro ao buscar CEP:", error));
+            }
+        });
+
+        // Máscara CPF
+        cpfInput.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, ''); // Apenas números
+            if (value.length > 11) value = value.substring(0, 11);
+            if (value.length > 9) {
+                value = value.replace(/^(\d{3})(\d{3})(\d{3})(\d{1,2})/, '$1.$2.$3-$4');
+            } else if (value.length > 6) {
+                value = value.replace(/^(\d{3})(\d{3})(\d{1,3})/, '$1.$2.$3');
+            } else if (value.length > 3) {
+                value = value.replace(/^(\d{3})(\d{1,3})/, '$1.$2');
+            }
+            e.target.value = value;
+        });
+
+        // Máscara Telefone
+        telefoneInput.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, ''); // Apenas números
+            if (value.length > 11) value = value.substring(0, 11);
+            if (value.length > 6) {
+                value = value.replace(/^(\d{2})(\d{5})(\d{1,4})/, '($1) $2-$3');
+            } else if (value.length > 2) {
+                value = value.replace(/^(\d{2})(\d{1,5})/, '($1) $2');
+            } else if (value.length > 0) {
+                value = value.replace(/^(\d{1,2})/, '($1');
+            }
+            e.target.value = value;
+        });
+        // ---------------------------------------------------
+
+        // 4. Submission do Form (Geração Oficial de PIX)
+        const form = document.getElementById('checkoutForm');
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const btn = document.getElementById('btnSubmit');
+            btn.innerHTML = "Gerando PIX Seguro...";
+            btn.disabled = true;
+
+            const freteAmountCents = Math.round(freteVal * 100);
+
+            const stateValue = document.getElementById('chkEstado').value.replace(/[^a-zA-Z]/g, '').toUpperCase();
+
+            // Montar itens do carrinho
+            const checkoutItems = [];
+            if (isKit) {
+                checkoutItems.push({
+                    id: String(prodId),
+                    name: "Kit 3 Conjuntos - " + produto.nome,
+                    quantity: 1,
+                    unitPrice: Math.round(KIT_PRICE * 100)
+                });
+            } else {
+                checkoutItems.push({
+                    id: String(prodId),
+                    name: produto.nome,
+                    quantity: 1,
+                    unitPrice: Math.round(SINGLE_PRICE * 100)
+                });
+            }
+            extras.forEach((extra, i) => {
+                checkoutItems.push({
+                    id: String(prodId) + "_extra_" + i,
+                    name: extra.name,
+                    quantity: 1,
+                    unitPrice: Math.round((parseFloat(extra.price) || 0) * 100)
+                });
+            });
+
+            const customer = {
+                name: document.getElementById('chkNome').value,
+                email: document.getElementById('chkEmail').value,
+                document: {
+                    number: document.getElementById('chkCpf').value.replace(/\D/g, ''),
+                    type: "CPF"
+                },
+                phone: document.getElementById('chkTelefone').value.replace(/\D/g, ''),
+                address: {
+                    street: document.getElementById('chkRua').value,
+                    zipCode: document.getElementById('chkCep').value.replace(/\D/g, ''),
+                    neighborhood: document.getElementById('chkBairro').value,
+                    city: document.getElementById('chkCidade').value,
+                    state: stateValue,
+                    country: "BR"
+                }
+            };
+
+            try {
+                const result = await CheckoutClient.createCheckout({
+                    referenceId:   "PED-" + Date.now(),
+                    paymentMethod: "pix",
+                    customer,
+                    items: checkoutItems,
+                    shipping: { fee: freteAmountCents }
+                });
+
+                const transaction = result.transaction || result;
+                const transactionId = transaction.id;
+                const qrCode = transaction.qrCode || "";
+                const qrImg  = transaction.qrCodeBase64 || "";
+
+                if (transactionId) {
+                    // TikTok Event: CompletePayment (PIX Gerado)
+                if(typeof ttq !== 'undefined') {
+                    ttq.track('CompletePayment', {
+                        content_type: 'product',
+                        content_id: String(prodId),
+                        content_name: produto.nome,
+                        value: totalVal,
+                        currency: 'BRL',
+                        quantity: 1
+                    });
+                    ttq.track('PlaceAnOrder', {
+                        content_type: 'product',
+                        content_id: String(prodId),
+                        content_name: produto.nome,
+                        value: totalVal,
+                        currency: 'BRL',
+                        quantity: 1
+                    });
+                }
+
+                    localStorage.setItem('lastPixData', JSON.stringify({
+                        id: transactionId,
+                        qrCode,
+                        qrImg,
+                        rawResponse: result
+                    }));
+                    window.location.href = 'pix.html';
+                } else {
+                    alert("Ocorreu um erro ao gerar o PIX. Verifique seus dados e tente novamente.");
+                    btn.innerHTML = '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg> Comprar agora';
+                    btn.disabled = false;
+                }
+            } catch (err) {
+                console.error("Erro na integração PIX:", err);
+                alert("Falha na comunicação com o servidor de pagamento. Tente novamente.");
+                btn.innerHTML = '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg> Comprar agora';
+                btn.disabled = false;
+            }
+        });
+
+        // 5. Função de copiar o PIX
+        function copiarPix() {
+            const input = document.getElementById('pixCode');
+            input.select();
+            input.setSelectionRange(0, 99999);
+            document.execCommand("copy");
+            alert("Código PIX copiado!");
+        }
+
+
+    </script>
+</body>
+</html>

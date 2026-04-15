@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 84 28" role="img" aria-label="Elo">
+  <rect width="84" height="28" rx="4" fill="#ffffff"/>
+  <circle cx="30" cy="14" r="7" fill="#ffd400"/>
+  <circle cx="42" cy="14" r="7" fill="#ef4123"/>
+  <circle cx="54" cy="14" r="7" fill="#00a651"/>
+  <text x="42" y="24" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="7" font-weight="700" fill="#222222">elo</text>
+</svg>
